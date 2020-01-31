@@ -7,17 +7,46 @@
 //
 
 import Foundation
-
-func creatPlayer()-> Player{
-    var name : String = ""
-    var player1 : Player
+func createHeros(name : String)-> [Hero]{
     var heroTable : [Hero] = []
     var heroTypeTable : [Hero.Cate] = []
     let sentenceTable = ["Fais ton premier choix","HA HA !tres bon choix" + "\nFais ton second choix", "Fais ton dernier choix !!!"]
-    print("\nHA HA Un nouveau guerrier est la !!!"
-        + "\nQu'elle est ton nom ?")
+       print("\nHA HA Un nouveau guerrier est la !!!"
+           + "\nQu'elle est ton nom ?")
+    for i in 0...2{
+                   print("\n\(sentenceTable[i])"
+                       + "\n 1. L'archer"
+                       + "\n 2. Le guerrier"
+                       + "\n 3. L'espion"
+                       + "\n 4. Le magicien"
+                       + "\n 5. Le MONSTRE")
+                   if let firsChoice = readLine() {
+                       switch firsChoice {
+                       case "1":
+                           heroTypeTable.append(.archer)
+                       case "2":
+                           heroTypeTable.append(.guerrier)
+                       case "3":
+                           heroTypeTable.append(.espion)
+                       case "4":
+                           heroTypeTable.append(.magicien)
+                       case "5":
+                           heroTypeTable.append(.MONSTRE)
+                       default:
+                           print("Je n'ai pas compris la réponse")
+                       }
+                       print(heroTypeTable[i])
+                   }
+                   let hero = Hero(cate: heroTypeTable[i])
+                   heroTable.append(hero)
+               }
+}
+func creatPlayer()-> Player{
+    var nameP1 : String?
+    var nameP2 : String?
+    var player1 : Player
     if let namePlayer1 = readLine() {
-        name = namePlayer1
+        nameP1 = namePlayer1
         print("Bienvenue toi \(namePlayer1)")
         print("\(namePlayer1) es tu avec un autre guerrier ou "
             + "\nveux tu te frotter a notre ORDI TUEUR"
@@ -25,44 +54,21 @@ func creatPlayer()-> Player{
         if let soloOuPas = readLine(){
             switch soloOuPas {
             case "1" :
+                print("Tu choisis de venir seul !")
                 print("Choisi trois guerriers")
-                for i in 0...2{
-                    print("\n\(sentenceTable[i])"
-                        + "\n 1. L'archer"
-                        + "\n 2. Le guerrier"
-                        + "\n 3. L'espion"
-                        + "\n 4. Le magicien"
-                        + "\n 5. Le MONSTRE")
-                    if let firsChoice = readLine() {
-                        switch firsChoice {
-                        case "1":
-                            heroTypeTable.append(.archer)
-                        case "2":
-                            heroTypeTable.append(.guerrier)
-                        case "3":
-                            heroTypeTable.append(.espion)
-                        case "4":
-                            heroTypeTable.append(.magicien)
-                        case "5":
-                            heroTypeTable.append(.MONSTRE)
-                        default:
-                            print("Je n'ai pas compris la réponse")
-                        }
-                        print(heroTypeTable[i])
-                    }
-                    let hero = Hero(cate: heroTypeTable[i])
-                    heroTable.append(hero)
-                }
+                let heroTab = createHeros(name : nameP1!)
             case "2" :
-                print("la bagarre entre amis il n'y a que ca de vrai")
+                print("La bagarre entre amis il n'y a que ca de vrai !"
+                + "Joueur 2 presentes toi !")
+                if let namePlayer2 = readLine(){
+                    nameP2 = namePlayer2
+                }
             default :
                 print("tu begailles ma parole !")
             }
         }
-        
-        
     }
-    player1 = Player(name: name, numberOfPlayers: 1,warriors1: heroTable[0], warriors2: heroTable[1], warriors3: heroTable[2])
+    player1 = Player(name: nameP1!, numberOfPlayers: 1,warriors1: heroTab[0], warriors2: heroTab[1], warriors3: heroTab[2])
     print("Félicitation tu possedes tes trois héros."
         + "\n Commencons la partie")
     return player1
