@@ -1,5 +1,5 @@
 //
-//  Guerrier.swift
+//  Espion.swift
 //  rpg
 //
 //  Created by ayite  on 31/01/2020.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-class Guerrier: Hero{
+class Espion: Hero{
     
 }

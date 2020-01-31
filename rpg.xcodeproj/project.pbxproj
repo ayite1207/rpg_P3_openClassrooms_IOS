@@ -12,6 +12,8 @@
 		EA43025423E42F12006EF184 /* Espion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA43025323E42F12006EF184 /* Espion.swift */; };
 		EA43025623E42F8E006EF184 /* Magicien.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA43025523E42F8E006EF184 /* Magicien.swift */; };
 		EA43025823E42FDF006EF184 /* Monstre.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA43025723E42FDF006EF184 /* Monstre.swift */; };
+		EA43025A23E430A1006EF184 /* Joueur.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA43025923E430A1006EF184 /* Joueur.swift */; };
+		EA43025C23E43311006EF184 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA43025B23E43311006EF184 /* Game.swift */; };
 		EA43BB3E23E395AE004E4101 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA43BB3D23E395AE004E4101 /* main.swift */; };
 		EA43BB4523E395F8004E4101 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA43BB4423E395F8004E4101 /* Hero.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,8 @@
 		EA43025323E42F12006EF184 /* Espion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Espion.swift; sourceTree = "<group>"; };
 		EA43025523E42F8E006EF184 /* Magicien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magicien.swift; sourceTree = "<group>"; };
 		EA43025723E42FDF006EF184 /* Monstre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monstre.swift; sourceTree = "<group>"; };
+		EA43025923E430A1006EF184 /* Joueur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joueur.swift; sourceTree = "<group>"; };
+		EA43025B23E43311006EF184 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		EA43BB3A23E395AE004E4101 /* rpg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rpg; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA43BB3D23E395AE004E4101 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		EA43BB4423E395F8004E4101 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				EA43025523E42F8E006EF184 /* Magicien.swift */,
 				EA43025723E42FDF006EF184 /* Monstre.swift */,
 				EA43025323E42F12006EF184 /* Espion.swift */,
+				EA43025923E430A1006EF184 /* Joueur.swift */,
+				EA43025B23E43311006EF184 /* Game.swift */,
 				EA43BB3D23E395AE004E4101 /* main.swift */,
 			);
 			path = rpg;
@@ -139,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA43025423E42F12006EF184 /* Espion.swift in Sources */,
+				EA43025C23E43311006EF184 /* Game.swift in Sources */,
+				EA43025A23E430A1006EF184 /* Joueur.swift in Sources */,
 				EA43025223E42DBD006EF184 /* Archer.swift in Sources */,
 				EA43025023E42634006EF184 /* Guerrier.swift in Sources */,
 				EA43BB3E23E395AE004E4101 /* main.swift in Sources */,
