@@ -22,7 +22,6 @@ class Hero{
     
     init(cate: Cate) {
         self.cate = cate
-        
         initialization(cate: cate)
     }
     
@@ -30,33 +29,34 @@ class Hero{
         switch cate {
         case .archer:
             self.cate = .archer
-            name = "Green Arrow"
+            name = "Green"
             life = 100
-            attack = 40
+            attack = 20
             type = "archer"
         case .guerrier:
             self.cate = .guerrier
-            name = "Conan le Barbare"
+            name = "Conan"
             life = 100
-            attack = 100
+            attack = 35
             type = "guerrier"
         case .espion:
             self.cate = .espion
-            name = "Kakashi"
+            name = "Ninja"
             life = 100
             attack = 20
             type = "espion"
         case .magicien:
             self.cate = .magicien
-            name = "Kakashi"
+            name = "Jafar"
             life = 80
-            attack = 60
+            attack = 10
+            care = 20
             type = "magicien"
         case .MONSTRE:
             self.cate = .MONSTRE
-            name = "Albus Dumbledore"
-            life = 120
-            care = 20
+            name = "Albus"
+            life = 80
+            attack = 45
             type = "Monstre"
         }
     }

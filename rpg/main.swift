@@ -7,7 +7,7 @@
 //
 
 import Foundation
-var game: Game
+var game: Game?
 
 print("\n----------------------------------------")
 print("           BATTLE ROYALE")
@@ -25,10 +25,10 @@ if let namePlayer1 = readLine() {
     if let soloOuPas = readLine(){
         switch soloOuPas {
         case "1":
-            var game = Game(namePlayer1: nameP1, namePlayer2: "Ordi",soloOuPas: "1")
+             game = Game(namePlayer1: nameP1, namePlayer2: "Ordi",soloOuPas: "1")
         case "2":
             print("La bagarre entre amis il n'y a que ca de vrai !"
-                + "Joueur 2 presentes toi !")
+                + "\nJoueur 2 presentes toi !")
             if let namePlayer2 = readLine(){
                 let nameP2 = namePlayer2
                 print("Vous devez avoir chacun trois Héros pour vous foutres dessus")
@@ -37,7 +37,25 @@ if let namePlayer1 = readLine() {
         default :
         print("tu begailles ma parole !")
         }
-        
+    }
+    
+    print("\n\nQUE LA BATAILLE COMMENCE\n\n")
+    if game!.player1?.round == game!.player1?.round{
+        print((game!.player1?.name)! + " choisi un de tes heros!"
+            + "\n1. \(game!.player1!.warriorsPlayer[0].name!)"
+            + "\n2. \(game!.player1!.warriorsPlayer[1].name!)"
+            + "\n3. \(game!.player1!.warriorsPlayer[2].name!)")
+        if let hero1 = readLine(){
+            let heroAttaque = game!.player1!.warriorsPlayer[Int(hero1)!]
+            print("Qui veux tu attaquer ?"
+                + "\n1. \(game!.player2!.warriorsPlayer[0].name!)"
+                + "\n2. \(game!.player2!.warriorsPlayer[1].name!)"
+                + "\n3. \(game!.player2!.warriorsPlayer[2].name!)")
+            if let hero2 = readLine() {
+                 let heroAttaque2 = game!.player2!.warriorsPlayer[Int(hero2)!]
+                 game?.round(SoigneouAttaque: heroAttaque, estSoignéouAttaqueé: heroAttaque2)
+            }
+        }
     }
 }
 
