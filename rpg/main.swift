@@ -13,19 +13,21 @@ print("\n----------------------------------------")
 print("           BATTLE ROYALE")
 print("----------------------------------------")
 
-print("Bienvenue dans le BATTLE ROYALE")
+print("\nBienvenue dans le BATTLE ROYALE")
 
-print("\nQu'elle est ton nom jeune guerrier ?")
+print("\nQu'elle est ton nom jeune guerrier ?\n")
 if let namePlayer1 = readLine() {
     let nameP1 = namePlayer1
-    print("Bienvenue toi \(namePlayer1)")
-    print("Es tu venu avec un autre guerrier ou "
+    print("===============================")
+    print("     Bienvenue toi \(namePlayer1)")
+    print("===============================")
+    print("\nEs tu venu avec un autre guerrier ou "
         + "\nveux tu te frotter a notre ORDI TUEUR"
-        + "\n1.SOLO / 2.AMIGO")
+        + "\n\n1.SOLO / 2.AMIGO\n")
     if let soloOuPas = readLine(){
         switch soloOuPas {
         case "1":
-             game = Game(namePlayer1: nameP1, namePlayer2: "Ordi",soloOuPas: "1")
+            game = Game(namePlayer1: nameP1, namePlayer2: "Ordi",soloOuPas: "1")
         case "2":
             print("La bagarre entre amis il n'y a que ca de vrai !"
                 + "\nJoueur 2 presentes toi !")
@@ -35,26 +37,67 @@ if let namePlayer1 = readLine() {
                 game = Game(namePlayer1: nameP1, namePlayer2: nameP2,soloOuPas: "2")
             }
         default :
-        print("tu begailles ma parole !")
+            print("tu begailles ma parole !")
         }
     }
     
-    print("\n\nQUE LA BATAILLE COMMENCE\n\n")
-    if game!.player1?.round == game!.player1?.round{
-        print((game!.player1?.name)! + " choisi un de tes heros!"
-            + "\n1. \(game!.player1!.warriorsPlayer[0].name!)"
-            + "\n2. \(game!.player1!.warriorsPlayer[1].name!)"
-            + "\n3. \(game!.player1!.warriorsPlayer[2].name!)")
-        if let hero1 = readLine(){
-            let heroAttaque = game!.player1!.warriorsPlayer[Int(hero1)!]
-            print("Qui veux tu attaquer ?"
-                + "\n1. \(game!.player2!.warriorsPlayer[0].name!)"
-                + "\n2. \(game!.player2!.warriorsPlayer[1].name!)"
-                + "\n3. \(game!.player2!.warriorsPlayer[2].name!)")
-            if let hero2 = readLine() {
-                 let heroAttaque2 = game!.player2!.warriorsPlayer[Int(hero2)!]
-                 game?.round(SoigneouAttaque: heroAttaque, estSoignéouAttaqueé: heroAttaque2)
+    let player1 = game?.player1
+    let player2 = game?.player2
+    print("=============================")
+    print("\nQUE LA BATAILLE COMMENCE\n")
+    print("=============================")
+    var continu = true
+    game!.player1?.round += 1
+    game!.player2?.round += 1
+    
+    while continu {
+        
+        print("============= ON EST DANS LA BOUCLE =============")
+        if player1?.round == player2?.round{
+            print("\nround \((player1?.round)!)           JI")
+            print("---------------------------\n")
+             player1?.round += 1
+            print((player1?.name)! + " choisi un de tes heros!"
+                + "\n1. \(player1!.warriorsPlayer[0].name!)"
+                + "     2. \(player1!.warriorsPlayer[1].name!)"
+                + "     3. \(player1!.warriorsPlayer[2].name!)")
+            if let hero1 = readLine(){
+                let hero = Int(hero1)! - 1
+                let heroAttaque = player1!.warriorsPlayer[hero]
+                print("Qui veux tu attaquer ?"
+                    + "\n1. \(player2!.warriorsPlayer[0].name!)"
+                    + "     2. \(player2!.warriorsPlayer[1].name!)"
+                    + "     3. \(player2!.warriorsPlayer[2].name!)")
+                if let hero2 = readLine() {
+                    let hero3 = Int(hero2)! - 1
+                    let heroDefence = player2!.warriorsPlayer[hero3]
+                    game?.attaque(player: player1!, hero1: heroAttaque, hero2: heroDefence)
+                    print("\(heroAttaque.name!) attaque \(heroDefence.name!)")
+                }
             }
+        } else {
+            print("ROUND PLAYER 2")
+            player2?.round += 1
+            print((player2?.name)! + " choisi un de tes heros!"
+                + "\n1. \(player2!.warriorsPlayer[0].name!)"
+                + "     2. \(player2!.warriorsPlayer[1].name!)"
+                + "     3. \(player2!.warriorsPlayer[2].name!)")
+            if let hero1 = readLine(){
+                let hero1P2 = Int(hero1)! - 1
+                let heroAttaqueP2 = player2!.warriorsPlayer[hero1P2]
+                print("Qui veux tu attaquer ?"
+                    + "\n1. \(player1!.warriorsPlayer[0].name!)"
+                    + "     2. \(player1!.warriorsPlayer[1].name!)"
+                    + "     3. \(player1!.warriorsPlayer[2].name!)")
+                if let hero2 = readLine() {
+                    let hero2P1 = Int(hero2)! - 1
+                    print(hero2P1)
+                    let heroDefense2 = player1!.warriorsPlayer[hero2P1]
+                    game?.attaque(player: player2!, hero1: heroAttaqueP2, hero2: heroDefense2)
+                    print("\(heroAttaqueP2.name!) attaque \(heroDefense2.name!)")
+                }
+            }
+            game?.displayHeroLife(hero1: player1!,hero2: player2! )
         }
     }
 }

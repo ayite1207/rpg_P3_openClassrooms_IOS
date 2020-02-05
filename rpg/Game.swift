@@ -18,7 +18,6 @@ class Game{
     init(namePlayer1 : String,namePlayer2 : String,soloOuPas: String) {
         self.nameP1 = namePlayer1
         if namePlayer2 == "Ordi" {
-            print("création d'un player ordi")
             player2 = creationOrdi()
             creatPlayers(soloOuPas: soloOuPas)
             begining()
@@ -64,6 +63,7 @@ class Game{
                 print("Je n'ai pas compris la réponse")
             }
         }
+        print("===============================")
         hero = Hero(cate: heroType!)
         return hero
     }
@@ -73,7 +73,7 @@ class Game{
         var heroTab2 : [Hero] = []
         switch soloOuPas {
         case "1" :
-            print("Tu choisis de venir seul ! COURAGEUX")
+            print("\nTu choisis de venir seul ! COURAGEUX")
             print("Tu dois avoir trois guerriers dans ton équipe")
             for i in 0...2 {
                 let sentenceTable = ["Fais ton premier choix","HA HA !tres bon choix \(nameP1)" + "\nFais ton second choix", "Fais ton dernier choix !!!"]
@@ -81,14 +81,13 @@ class Game{
                 heroTab1.append(heroPlayer1)
             }
             player1 = Player(name: nameP1, numberOfPlayers: 1,warriors1: heroTab1[0], warriors2: heroTab1[1], warriors3: heroTab1[2])
-            print("Félicitation tu possedes tes trois héros."
-                + "\n Commencons la partie")
+            print("\nFélicitation tu possedes tes trois héros.")
         case "2" :
             for i in 0...2 {
                 let sentencePlayer1Table = ["\(nameP1) Fais ton premier choix","HA HA !tres bon choix \(nameP1)" + "\nFais ton second choix", "\(nameP1) Fais ton dernier choix !!!"]
                 let heroPlayer1 = createHeros(name : nameP1, compteur: i,sentenceTable: sentencePlayer1Table)
                 heroTab1.append(heroPlayer1)
-                let sentencePlayer2Table = ["\(nameP2) A ton tour, Fais ton premier choix","Bon choix \(nameP2)" + "\nFais ton second choix", "\(nameP2) Fais ton dernier choix !!!"]
+                let sentencePlayer2Table = ["\(nameP2!) A ton tour, Fais ton premier choix","Bon choix \(nameP2!)" + "\nFais ton second choix", "\(nameP2!) Fais ton dernier choix !!!"]
                 let heroPlayer2 = createHeros(name : nameP2!, compteur: i,sentenceTable: sentencePlayer2Table)
                 heroTab2.append(heroPlayer2)
             }
@@ -101,7 +100,7 @@ class Game{
     
     func presentationPlayerHero(player: Player?){
         if let player1 = player {
-            print("\(player1.name) tu possèdes trois héros :\n"
+            print("\(player1.name) possède trois héros :\n"
                 + "\n\(player1.warriorsPlayer[0].name!)     | life: \(player1.warriorsPlayer[0].life)   | attack: \(player1.warriorsPlayer[0].attack)   | care: \(player1.warriorsPlayer[0].care)  "
                 + "\n\(player1.warriorsPlayer[1].name!)     | life: \(player1.warriorsPlayer[1].life)   | attack: \(player1.warriorsPlayer[1].attack)   | care: \(player1.warriorsPlayer[1].care)  "
                 + "\n\(player1.warriorsPlayer[2].name!)     | life: \(player1.warriorsPlayer[2].life)   | attack: \(player1.warriorsPlayer[2].attack)   | care: \(player1.warriorsPlayer[2].care)  \n")
@@ -110,7 +109,7 @@ class Game{
     }
     func begining(){
         print("C'est le moment que tout le monde attend, LA BAGARRE!"
-            + "\nCommencons par présenter nos deux guerriers!")
+            + "\n\nCommencons par présenter nos deux guerriers!")
         if nameP2 == "RAchid"{
             print("\nAujourd'hui c'est \(player1!.name) et l'ORDI \(player2!.name) qui s'affrontent.\n")
             presentationPlayerHero(player: player1!)
@@ -151,27 +150,13 @@ class Game{
             print("-------------------------------------------")
             for hero in 0...count - 1 {
                 if player1!.warriorsPlayer[hero].life > 0 && player2!.warriorsPlayer[hero].life > 0{
-                    print("\(player1!.warriorsPlayer[hero].name) / \(player1!.warriorsPlayer[hero].life) de vie ||   \(player2!.warriorsPlayer[hero].name) / \(player2!.warriorsPlayer[hero].life) de vie")
+                    print("\((player1!.warriorsPlayer[hero].name)!) / \(player1!.warriorsPlayer[hero].life) de vie ||   \((player2!.warriorsPlayer[hero].name)!) / \(player2!.warriorsPlayer[hero].life) de vie")
                 } else if player1!.warriorsPlayer[hero].life <= 0 && player2!.warriorsPlayer[hero].life <= 0 {
-                    print("\(player1!.warriorsPlayer[hero].name) EST MORT ||   \(player2!.warriorsPlayer[hero].name) / EST MORT")
+                    print("\((player1!.warriorsPlayer[hero].name)!) EST MORT ||   \((player2!.warriorsPlayer[hero].name)!) / EST MORT")
                 } else if player1!.warriorsPlayer[hero].life > 0 && player2!.warriorsPlayer[hero].life < 0 {
-                    print("\(player1!.warriorsPlayer[hero].name) / \(player1!.warriorsPlayer[hero].life) de vie  ||   \(player2!.warriorsPlayer[hero].name) / EST MORT")
-                }else if player1!.warriorsPlayer[hero].life < 0 && player2!.warriorsPlayer[hero].life > 0 {
-                    print("\(player1!.warriorsPlayer[hero].name) / EST MORT  ||   \(player2!.warriorsPlayer[hero].name) / \(player2!.warriorsPlayer[hero].life) de vie")
+                    print("\((player1!.warriorsPlayer[hero].name)!) / \(player1!.warriorsPlayer[hero].life) de vie  ||   \((player2!.warriorsPlayer[hero].name)!) / EST MORT")
+                }else if player1!.warriorsPlayer[hero].life < 0 && player2!.warriorsPlayer[hero].life > 0 { print("\((player1!.warriorsPlayer[hero].name)!) / EST MORT  ||   \(player2!.warriorsPlayer[hero].name) / \((player2!.warriorsPlayer[hero].life)) de vie\n")
                 }
-            }
-        }
-    
-        func round(SoigneouAttaque hero1: Hero,estSoignéouAttaqueé hero2: Hero ){
-    
-            if player1!.round == player2!.round {
-                player1!.round += 1
-                print("\nround \(player1!.round)")
-                attaque(player: player1!, hero1: hero1, hero2: hero2)
-            }else {
-                player2!.round += 1
-                attaque(player: player2!,hero1: hero1, hero2: hero2)
-                displayHeroLife(hero1: player1!, hero2: player2!)
             }
         }
     
@@ -182,53 +167,53 @@ class Game{
                 if hero2.life > 0 {
                     hero2.life -= 15
                     if hero2.life > 0 {
-                        print("\n\(player.name) attaque !" + "\(hero2.name) n'a plus que  \(hero2.life) de vie !")
+                        print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
-                        print("\n\(player.name) attaque !" + "\(hero2.name) est mort!")
+                        print("\n\(player.name) attaque !" + "\(hero2.name!) est mort!")
                     }
                 }else {
-                    print("\n\(hero2.name) est déja mort dommage !")
+                    print("\n\(hero2.name!) est déja mort dommage !")
                 }
             case .guerrier:
                 if hero2.life > 0 {
                     hero2.life -= 25
                     if hero2.life > 0 {
-                        print("\n\(player.name) attaque !" + "\(hero2.name) n'a plus que  \(hero2.life) de vie !")
+                        print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
-                        print("\n\(player.name) attaque !" + "\(hero2.name) est mort!")
+                        print("\n\(player.name) attaque !" + "\(hero2.name!) est mort!")
                     }
                 }else {
-                    print("\n\(hero2.name) est déja mort dommage !")
+                    print("\n\(hero2.name!) est déja mort dommage !")
                 }
             case .espion:
                 if hero2.life > 0 {
                     hero2.life -= 10
                     if hero2.life > 0 {
-                        print("\n\(player.name) attaque !" + "\(hero2.name) n'a plus que  \(hero2.life) de vie !")
+                        print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
-                        print("\n\(player.name) attaque !" + "\(hero2.name) est mort!")
+                        print("\n\(player.name) attaque !" + "\(hero2.name!) est mort!")
                     }
                 }else {
-                    print("\n\(hero2.name) est déja mort dommage !")
+                    print("\n\(hero2.name!) est déja mort dommage !")
                 }
             case .magicien:
                 if hero2.life > 0 {
                     hero2.life += 10
                     if hero2.life > 0 {
-                        print("\n\(player.name) soigne !" + " \(hero2.name) a \(hero2.life) !")
+                        print("\n\(player.name) soigne !" + " \(hero2.name!) a \(hero2.life) !")
                     } else {
-                        print("\n\(player.name) soigne" + "\(hero2.name),mais il est déjà mort!")
+                        print("\n\(player.name) soigne" + "\(hero2.name!),mais il est déjà mort!")
                     }
                 }else {
-                    print("\(hero2.name) est déja mort dommage !")
+                    print("\(hero2.name!) est déja mort dommage !")
                 }
             case .MONSTRE:
                 if hero2.life > 0 {
                     hero2.life -= 35
                     if hero2.life > 0 {
-                        print("\n\(player.name) attaque !" + "\(hero2.name) n'a plus que  \(hero2.life) de vie !")
+                        print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
-                        print("\n\(player.name) attaque !" + "\(hero2.name) est mort!")
+                        print("\n\(player.name) attaque !" + "\(hero2.name!) est mort!")
                     }
                 }else {
                     print("\n\(hero2.name) est déja mort dommage !")
