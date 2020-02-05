@@ -14,8 +14,9 @@ class Hero{
     var life: Int = 0
     var care = 0
     var attack = 0
-    
+    var fight: Int = 0
     var defense: Int = 0
+    
     enum Cate{
         case archer,guerrier, espion,magicien, MONSTRE
     }
@@ -59,6 +60,10 @@ class Hero{
             attack = 45
             type = "Monstre"
         }
+    }
+    
+    func superAttack(){
+        
     }
 }
 

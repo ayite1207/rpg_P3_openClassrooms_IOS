@@ -9,5 +9,9 @@
 import Foundation
 
 class Monstre: Hero{
-    
+    override func superAttack(){
+        let fight = super.fight
+        let defense = super.defense
+        print("\(super.name) a attaqué \(fight) fois et c'est défendu \(defense) fois")
+    }
 }

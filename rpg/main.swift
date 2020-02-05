@@ -51,10 +51,8 @@ if let namePlayer1 = readLine() {
     game!.player2?.round += 1
     
     while continu {
-        
-        print("============= ON EST DANS LA BOUCLE =============")
         if player1?.round == player2?.round{
-            print("\nround \((player1?.round)!)           JI")
+            print("\nround \((player1?.round)!)")
             print("---------------------------\n")
              player1?.round += 1
             print((player1?.name)! + " choisi un de tes heros!"
@@ -72,13 +70,11 @@ if let namePlayer1 = readLine() {
                     let hero3 = Int(hero2)! - 1
                     let heroDefence = player2!.warriorsPlayer[hero3]
                     game?.attaque(player: player1!, hero1: heroAttaque, hero2: heroDefence)
-                    print("\(heroAttaque.name!) attaque \(heroDefence.name!)")
                 }
             }
         } else {
-            print("ROUND PLAYER 2")
             player2?.round += 1
-            print((player2?.name)! + " choisi un de tes heros!"
+            print("\(player2!.name) choisi un de tes heros!\n"
                 + "\n1. \(player2!.warriorsPlayer[0].name!)"
                 + "     2. \(player2!.warriorsPlayer[1].name!)"
                 + "     3. \(player2!.warriorsPlayer[2].name!)")
@@ -91,10 +87,8 @@ if let namePlayer1 = readLine() {
                     + "     3. \(player1!.warriorsPlayer[2].name!)")
                 if let hero2 = readLine() {
                     let hero2P1 = Int(hero2)! - 1
-                    print(hero2P1)
                     let heroDefense2 = player1!.warriorsPlayer[hero2P1]
                     game?.attaque(player: player2!, hero1: heroAttaqueP2, hero2: heroDefense2)
-                    print("\(heroAttaqueP2.name!) attaque \(heroDefense2.name!)")
                 }
             }
             game?.displayHeroLife(hero1: player1!,hero2: player2! )

@@ -134,14 +134,14 @@ class Game{
                 print("\n\n=============================")
                 print("     VICTOIRE de \(player2!.name) ")
                 print("=============================")
-                return true
+                return false
             } else if lifePlayer2 <= 0 {
                 print("\n\n=============================")
                 print("     VICTOIRE de \(player1!.name) ")
                 print("=============================")
-                return true
+                return false
             }
-            return false
+            return true
         }
     
         func displayHeroLife(hero1: Player,hero2: Player ){
@@ -161,11 +161,13 @@ class Game{
         }
     
     func attaque(player: Player, hero1 : Hero,hero2 : Hero){
-        if whoseWin() == false {
+        if whoseWin() == true {
             switch hero1.cate {
             case .archer:
                 if hero2.life > 0 {
-                    hero2.life -= 15
+                    hero2.life -= hero1.attack
+                    hero2.defense += 1
+                    hero1.fight += 1
                     if hero2.life > 0 {
                         print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
@@ -176,7 +178,9 @@ class Game{
                 }
             case .guerrier:
                 if hero2.life > 0 {
-                    hero2.life -= 25
+                    hero2.life -= hero1.attack
+                    hero2.defense += 1
+                    hero1.fight += 1
                     if hero2.life > 0 {
                         print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
@@ -187,7 +191,9 @@ class Game{
                 }
             case .espion:
                 if hero2.life > 0 {
-                    hero2.life -= 10
+                    hero2.life -= hero1.attack
+                    hero2.defense += 1
+                    hero1.fight += 1
                     if hero2.life > 0 {
                         print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
@@ -198,7 +204,9 @@ class Game{
                 }
             case .magicien:
                 if hero2.life > 0 {
-                    hero2.life += 10
+                    hero2.life += hero1.attack
+                    hero2.defense += 1
+                    hero1.fight += 1
                     if hero2.life > 0 {
                         print("\n\(player.name) soigne !" + " \(hero2.name!) a \(hero2.life) !")
                     } else {
@@ -209,7 +217,9 @@ class Game{
                 }
             case .MONSTRE:
                 if hero2.life > 0 {
-                    hero2.life -= 35
+                    hero2.life -= hero1.attack
+                    hero2.defense += 1
+                    hero1.fight += 1
                     if hero2.life > 0 {
                         print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
@@ -222,5 +232,10 @@ class Game{
                 print("erreur dans la fonction attaque() de la classe Game")
             }
         }
+        superAttack(hero: hero1)
+        superAttack(hero: hero2)
     }
+    func superAttack(hero: Hero){
+        print("\(hero.name) a attaqué \(hero.fight) fois et c'est défendu \(hero.defense) fois")
+       }
 }
