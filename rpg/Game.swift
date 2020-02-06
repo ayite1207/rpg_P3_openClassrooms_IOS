@@ -126,19 +126,23 @@ class Game{
             for warrior in player1!.warriorsPlayer{
                 lifePlayer1 += warrior.life
             }
+            print(lifePlayer1)
             var lifePlayer2: Int = 0
             for warrior in player2!.warriorsPlayer{
                 lifePlayer2 += warrior.life
             }
+            print(lifePlayer2)
             if lifePlayer1 <= 0 {
                 print("\n\n=============================")
                 print("     VICTOIRE de \(player2!.name) ")
                 print("=============================")
+//                whoseWin()
                 return false
             } else if lifePlayer2 <= 0 {
                 print("\n\n=============================")
                 print("     VICTOIRE de \(player1!.name) ")
                 print("=============================")
+//                whoseWin()
                 return false
             }
             return true
@@ -153,9 +157,9 @@ class Game{
                     print("\((player1!.warriorsPlayer[hero].name)!) / \(player1!.warriorsPlayer[hero].life) de vie ||   \((player2!.warriorsPlayer[hero].name)!) / \(player2!.warriorsPlayer[hero].life) de vie")
                 } else if player1!.warriorsPlayer[hero].life <= 0 && player2!.warriorsPlayer[hero].life <= 0 {
                     print("\((player1!.warriorsPlayer[hero].name)!) EST MORT ||   \((player2!.warriorsPlayer[hero].name)!) / EST MORT")
-                } else if player1!.warriorsPlayer[hero].life > 0 && player2!.warriorsPlayer[hero].life < 0 {
+                } else if player1!.warriorsPlayer[hero].life > 0 && player2!.warriorsPlayer[hero].life <= 0 {
                     print("\((player1!.warriorsPlayer[hero].name)!) / \(player1!.warriorsPlayer[hero].life) de vie  ||   \((player2!.warriorsPlayer[hero].name)!) / EST MORT")
-                }else if player1!.warriorsPlayer[hero].life < 0 && player2!.warriorsPlayer[hero].life > 0 { print("\((player1!.warriorsPlayer[hero].name)!) / EST MORT  ||   \(player2!.warriorsPlayer[hero].name) / \((player2!.warriorsPlayer[hero].life)) de vie\n")
+                }else if player1!.warriorsPlayer[hero].life <= 0 && player2!.warriorsPlayer[hero].life > 0 { print("\((player1!.warriorsPlayer[hero].name)!) / EST MORT  ||   \((player2!.warriorsPlayer[hero].name)!) / \((player2!.warriorsPlayer[hero].life)) de vie")
                 }
             }
         }
@@ -165,15 +169,23 @@ class Game{
             switch hero1.cate {
             case .archer:
                 if hero2.life > 0 {
+                    if hero1.fight == 3 {
+                        print("C'est mon troisieme combats, celui qui va se prendre cette fleche va avoir mal !")
+                        hero1.attack += 30
+                        hero2.life -= hero1.attack
+                    }
                     hero2.life -= hero1.attack
                     hero2.defense += 1
                     hero1.fight += 1
+                    hero1.attack += 3
                     if hero2.life > 0 {
                         print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
+                        hero2.life = 0
                         print("\n\(player.name) attaque !" + "\(hero2.name!) est mort!")
                     }
                 }else {
+                    hero2.life = 0
                     print("\n\(hero2.name!) est déja mort dommage !")
                 }
             case .guerrier:
@@ -184,9 +196,11 @@ class Game{
                     if hero2.life > 0 {
                         print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
+                        hero2.life = 0
                         print("\n\(player.name) attaque !" + "\(hero2.name!) est mort!")
                     }
                 }else {
+                    hero2.life = 0
                     print("\n\(hero2.name!) est déja mort dommage !")
                 }
             case .espion:
@@ -197,9 +211,11 @@ class Game{
                     if hero2.life > 0 {
                         print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
+                        hero2.life = 0
                         print("\n\(player.name) attaque !" + "\(hero2.name!) est mort!")
                     }
                 }else {
+                    hero2.life = 0
                     print("\n\(hero2.name!) est déja mort dommage !")
                 }
             case .magicien:
@@ -223,9 +239,11 @@ class Game{
                     if hero2.life > 0 {
                         print("\n\(player.name) attaque !" + "\(hero2.name!) n'a plus que  \(hero2.life) de vie !")
                     } else {
+                        hero2.life = 0
                         print("\n\(player.name) attaque !" + "\(hero2.name!) est mort!")
                     }
                 }else {
+                    hero2.life = 0
                     print("\n\(hero2.name) est déja mort dommage !")
                 }
             default :
