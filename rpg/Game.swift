@@ -67,6 +67,7 @@ class Game{
         hero = Hero(cate: heroType!)
         return hero
     }
+    // Avoir a faire sauter le switch 
     
     func creatPlayers(soloOuPas: String){
         var heroTab1 : [Hero] = []
