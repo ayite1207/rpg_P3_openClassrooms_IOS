@@ -131,7 +131,43 @@ class Game{
             }
         }
         print("===============================")
+<<<<<<< HEAD
         return hero!
+=======
+        hero = Hero(cate: heroType!)
+        return hero
+    }
+    // Avoir a faire sauter le switch 
+    
+    func creatPlayers(soloOuPas: String){
+        var heroTab1 : [Hero] = []
+        var heroTab2 : [Hero] = []
+        switch soloOuPas {
+        case "1" :
+            print("\nTu choisis de venir seul ! COURAGEUX")
+            print("Tu dois avoir trois guerriers dans ton équipe")
+            for i in 0...2 {
+                let sentenceTable = ["Fais ton premier choix","HA HA !tres bon choix \(nameP1)" + "\nFais ton second choix", "Fais ton dernier choix !!!"]
+                let heroPlayer1 = createHeros(name : nameP1, compteur: i,sentenceTable: sentenceTable)
+                heroTab1.append(heroPlayer1)
+            }
+            player1 = Player(name: nameP1, numberOfPlayers: 1,warriors1: heroTab1[0], warriors2: heroTab1[1], warriors3: heroTab1[2])
+            print("\nFélicitation tu possedes tes trois héros.")
+        case "2" :
+            for i in 0...2 {
+                let sentencePlayer1Table = ["\(nameP1) Fais ton premier choix","HA HA !tres bon choix \(nameP1)" + "\nFais ton second choix", "\(nameP1) Fais ton dernier choix !!!"]
+                let heroPlayer1 = createHeros(name : nameP1, compteur: i,sentenceTable: sentencePlayer1Table)
+                heroTab1.append(heroPlayer1)
+                let sentencePlayer2Table = ["\(nameP2!) A ton tour, Fais ton premier choix","Bon choix \(nameP2!)" + "\nFais ton second choix", "\(nameP2!) Fais ton dernier choix !!!"]
+                let heroPlayer2 = createHeros(name : nameP2!, compteur: i,sentenceTable: sentencePlayer2Table)
+                heroTab2.append(heroPlayer2)
+            }
+            player1 = Player(name: nameP1, numberOfPlayers: 1,warriors1: heroTab1[0], warriors2: heroTab1[1], warriors3: heroTab1[2])
+            player2 = Player(name: nameP2!, numberOfPlayers: 2,warriors1: heroTab2[0], warriors2: heroTab2[1], warriors3: heroTab2[2])
+        default:
+            print("tu begailles ma parole !")
+        }
+>>>>>>> 2cba237784b6ff48fc8f24f9f717673ecb96471a
     }
     
     func presentationPlayerHero(player: Player?){
