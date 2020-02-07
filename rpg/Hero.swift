@@ -62,6 +62,30 @@ class Hero{
         }
     }
     
+    func attack(player2: Player, heroPlayer2 : Hero){
+        print("JE SUIS DANS LA FONCTION ATTACK DE LA CLASSE HERO!!!!!!!")
+        if heroPlayer2.life > 0 {
+            if self.fight == 3 {
+                print("C'est mon troisieme combats, celui qui va se prendre cette fleche va avoir mal !")
+                self.attack += 30
+                heroPlayer2.life -= self.attack
+            }
+            heroPlayer2.life -= self.attack
+            heroPlayer2.defense += 1
+            self.fight += 1
+            self.attack += 3
+            if heroPlayer2.life > 0 {
+                print("\n\(self.name!) attaque !" + "\(heroPlayer2.name!) n'a plus que  \(heroPlayer2.life) de vie !")
+            } else {
+                heroPlayer2.life = 0
+                print("\n\(self.name!) attaque !" + "\(heroPlayer2.name!) est mort!")
+            }
+        }else {
+            heroPlayer2.life = 0
+            print("\n\(heroPlayer2.name!) est déja mort dommage !")
+        }
+    }
+    
     func superAttack(){
         
     }

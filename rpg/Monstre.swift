@@ -9,6 +9,16 @@
 import Foundation
 
 class Monstre: Hero{
+    
+    init(){
+           super.init(cate: .MONSTRE)
+           presentation()
+       }
+
+       func presentation(){
+           print("Je suis un monstre!!")
+       }
+    
     override func superAttack(){
         let fight = super.fight
         let defense = super.defense

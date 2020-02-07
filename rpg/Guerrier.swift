@@ -9,6 +9,16 @@
 import Foundation
 
 class Guerrier: Hero{
+    
+    init(){
+           super.init(cate: .guerrier)
+           presentation()
+       }
+
+       func presentation(){
+           print("Je suis un guerrier!!")
+       }
+    
     override func superAttack(){
         let fight = super.fight
         let defense = super.defense

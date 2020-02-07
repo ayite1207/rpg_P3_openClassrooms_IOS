@@ -9,6 +9,17 @@
 import Foundation
 
 class Archer: Hero{
+    
+    init(){
+        super.init(cate: .archer)
+        presentation()
+    }
+
+    func presentation(){
+        print("Je suis un archer!!")
+    }
+    
+    
     override func superAttack(){
         let fight = super.fight
         let defense = super.defense

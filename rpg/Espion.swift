@@ -9,6 +9,16 @@
 import Foundation
 
 class Espion: Hero{
+    
+    init(){
+           super.init(cate: .espion)
+           presentation()
+       }
+
+       func presentation(){
+           print("Je suis un espion!!")
+       }
+    
     override func superAttack(){
         let fight = super.fight
         let defense = super.defense

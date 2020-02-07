@@ -9,6 +9,16 @@
 import Foundation
 
 class Magicien: Hero{
+    
+    init(){
+           super.init(cate: .magicien)
+           presentation()
+       }
+
+       func presentation(){
+           print("Je suis un magicien!!")
+       }
+    
     override func superAttack(){
         let fight = super.fight
         let defense = super.defense
