@@ -131,13 +131,7 @@ class Game{
             }
         }
         print("===============================")
-<<<<<<< HEAD
-        return hero!
-=======
-        hero = Hero(cate: heroType!)
-        return hero
-    }
-    // Avoir a faire sauter le switch 
+
     
     func creatPlayers(soloOuPas: String){
         var heroTab1 : [Hero] = []
@@ -167,7 +161,7 @@ class Game{
         default:
             print("tu begailles ma parole !")
         }
->>>>>>> 2cba237784b6ff48fc8f24f9f717673ecb96471a
+
     }
     
     func presentationPlayerHero(player: Player?){
