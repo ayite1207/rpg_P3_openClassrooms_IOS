@@ -14,8 +14,8 @@
             filePath = "rpg/Game.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "startGame()"
             landmarkType = "7">
          </BreakpointContent>
