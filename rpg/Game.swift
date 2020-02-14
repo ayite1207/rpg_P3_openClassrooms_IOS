@@ -158,10 +158,10 @@ class Game{
                     + "\n1. \(player1!.warriorsPlayer[0].name!)" + "     | 2. \(player1!.warriorsPlayer[1].name!)" + "     | 3. \(player1!.warriorsPlayer[2].name!)")
                 print("life:\(player1!.warriorsPlayer[0].life)" + "     | life:\(player1!.warriorsPlayer[1].life)" + "     | life: \(player1!.warriorsPlayer[2].life)")
                 print("attack:\(player1!.warriorsPlayer[0].attack)" + "    | attack:\(player1!.warriorsPlayer[1].attack)" + "   | attack: \(player1!.warriorsPlayer[2].attack)")
-                
                 if let hero1 = readLine(){
                     let hero = Int(hero1)! - 1
                     let heroAttaque = player1!.warriorsPlayer[hero]
+                    heroAttaque.heroTechnic(player: player1!)
                     print("Qui veux tu attaquer ?"
                         + "\n1. \(player2!.warriorsPlayer[0].name!)" + "     | 2. \(player2!.warriorsPlayer[1].name!)" + "     | 3. \(player2!.warriorsPlayer[2].name!)")
                     print("life:\(player2!.warriorsPlayer[0].life)" + "     | life:\(player2!.warriorsPlayer[1].life)" + "     | life: \(player2!.warriorsPlayer[2].life)")
@@ -169,7 +169,7 @@ class Game{
                     if let hero2 = readLine() {
                         let hero3 = Int(hero2)! - 1
                         let heroDefence = player2!.warriorsPlayer[hero3]
-                        heroAttaque.attack(player2: player2!, heroPlayer2: heroDefence)
+                        heroAttaque.whatTechnic(player2: player2!, heroPlayer2: heroDefence, typeOfTechnic: heroAttaque.typeOfAttack)
                         //                            attaque(player: player1!, hero1: heroAttaque, hero2: heroDefence)
                     }
                 }
@@ -181,13 +181,14 @@ class Game{
                 if let hero1 = readLine(){
                     let hero1P2 = Int(hero1)! - 1
                     let heroAttaqueP2 = player2!.warriorsPlayer[hero1P2]
+                    heroAttaqueP2.heroTechnic(player: player2!)
                     print("Qui veux tu attaquer ?"
                         + "\n1. \(player1!.warriorsPlayer[0].name!)" + "     2. \(player1!.warriorsPlayer[1].name!)" + "     3. \(player1!.warriorsPlayer[2].name!)")
                     print("  life:\(player1!.warriorsPlayer[0].life)" + "      life:\(player1!.warriorsPlayer[1].life)" + "     life: \(player1!.warriorsPlayer[2].life)")
                     if let hero2 = readLine() {
                         let hero2P1 = Int(hero2)! - 1
                         let heroDefense2 = player1!.warriorsPlayer[hero2P1]
-                        heroAttaqueP2.attack(player2: player1!, heroPlayer2: heroDefense2)
+                        heroAttaqueP2.whatTechnic(player2: player1!, heroPlayer2: heroDefense2, typeOfTechnic:heroAttaqueP2.typeOfAttack )
                         //                           attaque(player: player2!, hero1: heroAttaqueP2, hero2: heroDefense2)
                     }
                 }

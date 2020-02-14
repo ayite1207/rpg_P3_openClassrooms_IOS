@@ -16,6 +16,7 @@ class Hero{
     var attack = 0
     var fight: Int = 0
     var defense: Int = 0
+    var typeOfAttack = 0
     
     enum Cate{
         case archer,guerrier, espion,magicien, MONSTRE
@@ -62,7 +63,15 @@ class Hero{
         }
     }
     
-    func attack(player2: Player, heroPlayer2 : Hero){
+    func heroTechnic(player: Player){
+        print("je suis dans la fonction hero technic")
+    }
+
+    func whatTechnic(player2: Player, heroPlayer2 : Hero, typeOfTechnic: Int){
+        print("je suis dans la fonction whatTechnic")
+    }
+    
+    func normalAttack(player2: Player, heroPlayer2 : Hero){
         print("JE SUIS DANS LA FONCTION ATTACK DE LA CLASSE HERO!!!!!!!")
         if heroPlayer2.life > 0 {
             heroPlayer2.life -= self.attack
