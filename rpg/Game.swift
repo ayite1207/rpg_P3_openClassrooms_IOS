@@ -11,7 +11,6 @@ import Foundation
 class Game{
     var player1 : Player?
     var player2 : Player?
-    var round = 0
     
     func startGame(){
         print("\n----------------------------------------")

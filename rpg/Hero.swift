@@ -81,8 +81,5 @@ class Hero{
         }
     }
     
-    func superAttack(){
-        
-    }
 }
 

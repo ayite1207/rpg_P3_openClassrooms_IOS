@@ -19,7 +19,7 @@ class Magicien: Hero{
            print("Je suis un magicien!!")
        }
     
-    override func superAttack(){
+    func superAttack(){
         let fight = super.fight
         let defense = super.defense
         print("\(super.name) a attaqué \(fight) fois et c'est défendu \(defense) fois")
