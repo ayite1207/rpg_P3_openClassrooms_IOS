@@ -12,7 +12,6 @@ class Archer: Hero{
     
     init(){
         super.init(cate: .archer)
-        presentation()
     }
     
     func presentation(){

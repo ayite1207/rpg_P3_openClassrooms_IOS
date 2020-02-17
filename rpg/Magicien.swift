@@ -12,7 +12,7 @@ class Magicien: Hero{
     
     init(){
         super.init(cate: .magicien)
-        presentation()
+        
     }
     
     func presentation(){
@@ -24,7 +24,7 @@ class Magicien: Hero{
         self.fight += 1
         if player.round >= 3 {
             while bonChoix == true {
-                print("Ton espion à acquis de l'experience, tu as débloqué tour de MAGIE  !"
+                print("Ton MAGE à acquis de l'experience, tu as débloqué tour de MAGIE  !"
                     + "\n 1. ATTACK NORMAL 2. TOUR DE MAGIE")
                 if let choix = readLine(){
                     switch choix {
@@ -87,8 +87,8 @@ class Magicien: Hero{
         for i in 0...2{
             if player2.warriorsPlayer[i].life > 0 {
                    let superAttack = 20
-                   heroPlayer2.life -= superAttack
-                   heroPlayer2.defense += 1
+                   player2.warriorsPlayer[i].life -= superAttack
+                   player2.warriorsPlayer[i].defense += 1
                    print("MAGIE ! \(player2.warriorsPlayer[i].name!) perd \(superAttack) point de vie !"
                        + "\(player2.warriorsPlayer[i].name!) n'a plus que \(player2.warriorsPlayer[i].life) de vie !")
                    if player2.warriorsPlayer[i].life < 0 {

@@ -12,7 +12,7 @@ class Guerrier: Hero{
     
     init(){
            super.init(cate: .guerrier)
-           presentation()
+           
        }
 
        func presentation(){

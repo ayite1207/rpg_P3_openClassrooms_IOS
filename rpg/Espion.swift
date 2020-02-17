@@ -12,7 +12,7 @@ class Espion: Hero{
     
     init(){
         super.init(cate: .espion)
-        presentation()
+        
     }
     
     func presentation(){

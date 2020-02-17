@@ -12,7 +12,7 @@ class Monstre: Hero{
     
     init(){
         super.init(cate: .MONSTRE)
-        presentation()
+        
     }
     
     func presentation(){
