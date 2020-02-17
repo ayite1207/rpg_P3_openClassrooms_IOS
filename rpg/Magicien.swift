@@ -22,10 +22,10 @@ class Magicien: Hero{
     override func heroTechnic(player: Player){
         var bonChoix = true
         self.fight += 1
-        if player.round >= 2 {
+        if player.round >= 3 {
             while bonChoix == true {
                 print("Ton espion à acquis de l'experience, tu as débloqué tour de MAGIE  !"
-                    + "\n 1. ATTACK NORMAL 2. TOUR MAGIE")
+                    + "\n 1. ATTACK NORMAL 2. TOUR DE MAGIE")
                 if let choix = readLine(){
                     switch choix {
                     case "1":
@@ -62,16 +62,15 @@ class Magicien: Hero{
         print("ROUND N° \(player2.round)")
         while bonChoix == true {
             if heroPlayer2.life > 0 {
-                heroPlayer2.life -= self.attack
+                heroPlayer2.life -= attack
                 heroPlayer2.defense += 1
-                self.fight += 1
                 if heroPlayer2.life > 0 {
-                    print("\n\(self.name!) attaque ! \(heroPlayer2.name!) perd \(self.attack) point de vie !"
+                    print("\n\(name!) attaque ! \(heroPlayer2.name!) perd \(attack) point de vie !"
                         + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
                     bonChoix = false
                 } else {
                     heroPlayer2.life = 0
-                    print("\n\(self.name!) attaque !" + "\(heroPlayer2.name!) est mort!")
+                    print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
                     bonChoix = false
                 }
             }else {
@@ -84,20 +83,22 @@ class Magicien: Hero{
     
     func superAttack(player2: Player, heroPlayer2 : Hero){
         print("JE SUIS DANS LA FONCTION SUPER ATTACK DE LA CLASSE MageICIEN   !!!!!!!")
-        if heroPlayer2.life > 0 {
-            let superAttack = attack * 2
-            heroPlayer2.life -= superAttack
-            heroPlayer2.defense += 1
-            fight += 1
-            print("MAGIE ! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
-                + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
-            if heroPlayer2.life < 0 {
-                heroPlayer2.life = 0
-                print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
-            }
-        }else {
-            heroPlayer2.life = 0
-            print("\n\(heroPlayer2.name!) est déja mort dommage !")
+        print("Super ATTAQUE tour de Magie !!!!!" + "\nJAFAR attaque tous les enemis vivants !!!!")
+        for i in 0...2{
+            if player2.warriorsPlayer[i].life > 0 {
+                   let superAttack = 20
+                   heroPlayer2.life -= superAttack
+                   heroPlayer2.defense += 1
+                   print("MAGIE ! \(player2.warriorsPlayer[i].name!) perd \(superAttack) point de vie !"
+                       + "\(player2.warriorsPlayer[i].name!) n'a plus que \(player2.warriorsPlayer[i].life) de vie !")
+                   if player2.warriorsPlayer[i].life < 0 {
+                       player2.warriorsPlayer[i].life = 0
+                       print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
+                   }
+               }else {
+                   player2.warriorsPlayer[i].life = 0
+                   print("\n\(heroPlayer2.name!) est déja mort dommage !")
+               }
         }
     }
 }

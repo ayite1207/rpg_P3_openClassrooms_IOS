@@ -21,11 +21,11 @@ class Monstre: Hero{
     
     override func heroTechnic(player: Player){
         var bonChoix = true
-        self.fight += 1
-        if player.round >= 2 {
+        fight += 1
+        if player.round >= 3 {
             while bonChoix == true {
                 print("Ton espion à acquis de l'experience, tu as débloqué COUP FATAL  !"
-                    + "\n 1. ATTACK NORMAL 2. TOUR MAGIE")
+                    + "\n 1. ATTACK NORMAL 2. COUP FATAL")
                 if let choix = readLine(){
                     switch choix {
                     case "1":
@@ -62,16 +62,15 @@ class Monstre: Hero{
         print("ROUND N° \(player2.round)")
         while bonChoix == true {
             if heroPlayer2.life > 0 {
-                heroPlayer2.life -= self.attack
+                heroPlayer2.life -= attack
                 heroPlayer2.defense += 1
-                self.fight += 1
                 if heroPlayer2.life > 0 {
-                    print("\n\(self.name!) attaque ! \(heroPlayer2.name!) perd \(self.attack) point de vie !"
+                    print("\n\(name!) attaque ! \(heroPlayer2.name!) perd \(attack) point de vie !"
                         + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
                     bonChoix = false
                 } else {
                     heroPlayer2.life = 0
-                    print("\n\(self.name!) attaque !" + "\(heroPlayer2.name!) est mort!")
+                    print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
                     bonChoix = false
                 }
             }else {
@@ -88,7 +87,6 @@ class Monstre: Hero{
             let superAttack = attack * 2
             heroPlayer2.life -= superAttack
             heroPlayer2.defense += 1
-            fight += 1
             print("MAGIE ! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
                 + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
             if heroPlayer2.life < 0 {

@@ -52,11 +52,13 @@ class Game{
     var endGame = false
     
     func creationOrdi()-> Player{
-        let tabEnum = [Hero.Cate.archer,Hero.Cate.guerrier,Hero.Cate.espion,Hero.Cate.magicien,Hero.Cate.MONSTRE]
-        let hero1 = Hero(cate: tabEnum.randomElement()!)
-        let hero2 = Hero(cate: tabEnum.randomElement()!)
-        let hero3 = Hero(cate: tabEnum.randomElement()!)
-        let  ordi = Player(name: "Rachid 2.0", numberOfPlayers: 1,warriors1: hero1, warriors2: hero2, warriors3: hero3)
+        let tabTypeHero = [Archer(),Guerrier(),Espion(),Magicien(),Monstre()]
+        var tabHero: [Hero] = []
+        for _ in 0...2 {
+            let hero = tabTypeHero.randomElement()
+            tabHero.append(hero!)
+        }
+        let  ordi = Player(name: "Rachid 2.0", numberOfPlayers: 1,warriors1: tabHero[0], warriors2: tabHero[1], warriors3: tabHero[2])
         return ordi
     }
     
@@ -179,8 +181,8 @@ class Game{
                     + "\n1. \(player2!.warriorsPlayer[0].name!)" + "     2. \(player2!.warriorsPlayer[1].name!)" + "     3. \(player2!.warriorsPlayer[2].name!)")
                 print(" life:\(player2!.warriorsPlayer[0].life)" + "     life:\(player2!.warriorsPlayer[1].life)" + "     life: \(player2!.warriorsPlayer[2].life)")
                 if let hero1 = readLine(){
-                    let hero1P2 = Int(hero1)! - 1
-                    let heroAttaqueP2 = player2!.warriorsPlayer[hero1P2]
+                    let heroP2 = Int(hero1)! - 1
+                    let heroAttaqueP2 = player2!.warriorsPlayer[heroP2]
                     heroAttaqueP2.heroTechnic(player: player2!)
                     print("Qui veux tu attaquer ?"
                         + "\n1. \(player1!.warriorsPlayer[0].name!)" + "     2. \(player1!.warriorsPlayer[1].name!)" + "     3. \(player1!.warriorsPlayer[2].name!)")

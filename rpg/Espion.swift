@@ -22,7 +22,7 @@ class Espion: Hero{
     override func heroTechnic(player: Player){
         var bonChoix = true
         self.fight += 1
-        if player.round >= 2 {
+        if player.round >= 3 {
             while bonChoix == true {
                 print("Ton espion à acquis de l'experience, tu as débloqué l'attaque Poison Vicieux !"
                     + "\n 1. ATTACK NORMAL 2. SUPER ATTACK")
@@ -62,11 +62,10 @@ class Espion: Hero{
         print("ROUND N° \(player2.round)")
         while bonChoix == true {
             if heroPlayer2.life > 0 {
-                heroPlayer2.life -= self.attack
+                heroPlayer2.life -= attack
                 heroPlayer2.defense += 1
-                self.fight += 1
                 if heroPlayer2.life > 0 {
-                    print("\n\(self.name!) attaque ! \(heroPlayer2.name!) perd \(self.attack) point de vie !"
+                    print("\n\(name!) attaque ! \(heroPlayer2.name!) perd \(attack) point de vie !"
                         + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
                     bonChoix = false
                 } else {
@@ -88,7 +87,6 @@ class Espion: Hero{
             let superAttack = attack * 2
             heroPlayer2.life -= superAttack
             heroPlayer2.defense += 1
-            fight += 1
             print("Poison VICIEUX! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
                 + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
             if heroPlayer2.life < 0 {

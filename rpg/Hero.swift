@@ -64,25 +64,24 @@ class Hero{
     }
     
     func heroTechnic(player: Player){
-        print("je suis dans la fonction hero technic")
+        print("je suis dans la fonction hero technic DE LA CLASSE HERO")
     }
 
     func whatTechnic(player2: Player, heroPlayer2 : Hero, typeOfTechnic: Int){
-        print("je suis dans la fonction whatTechnic")
+        print("je suis dans la fonction whatTechnic DE LA CLASSE HERO")
     }
     
     func normalAttack(player2: Player, heroPlayer2 : Hero){
         print("JE SUIS DANS LA FONCTION ATTACK DE LA CLASSE HERO!!!!!!!")
         if heroPlayer2.life > 0 {
-            heroPlayer2.life -= self.attack
+            heroPlayer2.life -= attack
             heroPlayer2.defense += 1
-            self.fight += 1
             if heroPlayer2.life > 0 {
-                print("\n\(self.name!) attaque ! \(heroPlayer2.name!) perd \(self.attack) point de vie !"
+                print("\n\(name!) attaque ! \(heroPlayer2.name!) perd \(attack) point de vie !"
                     + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
             } else {
                 heroPlayer2.life = 0
-                print("\n\(self.name!) attaque !" + "\(heroPlayer2.name!) est mort!")
+                print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
             }
         }else {
             heroPlayer2.life = 0
