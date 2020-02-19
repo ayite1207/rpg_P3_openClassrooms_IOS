@@ -7,10 +7,28 @@
 //
 
 import Foundation
+
+/**
+Class Hero : Mother Class wich allows to create the other Class of hero  (archer, guerrier etc ).
+ 
+ Contain all properties and methods common to other classes
+ 
+    - Propriétés:
+        - name: the name of the héro selected
+        -  cate: the category of the hero selected (archer, guerrier etc )
+        -  care: the number of points which make it possible to treat someone
+        -  attack: the number of points which make it possible to attack someone
+        -  fight: the number of time a hero fight
+        -  defense: the number of time a hero defense
+        -  typeOfAttack: the type of attack a hero choose to use
+    
+    -  Enum:
+        -  Cate: lets choose the type of héro
+ 
+*/
 class Hero{
     var name: String?
     var cate: Cate?
-    var type: String?
     var life: Int = 0
     var care = 0
     var attack = 0
@@ -34,32 +52,27 @@ class Hero{
             name = "Green"
             life = 100
             attack = 20
-            type = "archer"
         case .guerrier:
             self.cate = .guerrier
             name = "Conan"
             life = 100
             attack = 35
-            type = "guerrier"
         case .espion:
             self.cate = .espion
             name = "Ninja"
             life = 100
             attack = 20
-            type = "espion"
         case .magicien:
             self.cate = .magicien
             name = "Jafar"
             life = 80
             attack = 10
             care = 20
-            type = "magicien"
         case .MONSTRE:
             self.cate = .MONSTRE
             name = "Albus"
             life = 80
             attack = 45
-            type = "Monstre"
         }
     }
     

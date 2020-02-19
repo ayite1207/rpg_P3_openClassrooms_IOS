@@ -89,9 +89,10 @@ class Magicien: Hero{
                    let superAttack = 20
                    player2.warriorsPlayer[i].life -= superAttack
                    player2.warriorsPlayer[i].defense += 1
-                   print("MAGIE ! \(player2.warriorsPlayer[i].name!) perd \(superAttack) point de vie !"
-                       + "\(player2.warriorsPlayer[i].name!) n'a plus que \(player2.warriorsPlayer[i].life) de vie !")
-                   if player2.warriorsPlayer[i].life < 0 {
+                if player2.warriorsPlayer[i].life > 0 {
+                    print("MAGIE ! \(player2.warriorsPlayer[i].name!) perd \(superAttack) point de vie !"
+                        + "\(player2.warriorsPlayer[i].name!) n'a plus que \(player2.warriorsPlayer[i].life) de vie !")
+                }else {
                        player2.warriorsPlayer[i].life = 0
                        print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
                    }

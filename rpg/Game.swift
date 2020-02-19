@@ -13,6 +13,7 @@ class Game{
     var player2 : Player?
     
     func startGame(){
+        var answere = true
         print("\n----------------------------------------")
         print("           BATTLE ROYALE")
         print("----------------------------------------")
@@ -24,26 +25,31 @@ class Game{
             print("===============================")
             print("     Bienvenue toi \(namePlayer1)")
             print("===============================")
-            print("\nEs tu venu avec un autre guerrier ou "
-                + "\nveux tu te frotter a notre ORDI TUEUR"
-                + "\n\n1.SOLO / 2.AMIGO")
-            if let soloOuPas = readLine(){
-                switch soloOuPas {
-                case "1":
-                    player2 = creationOrdi()
-                    creatPlayers(soloOuPas: "1", namePlayer1: namePlayer1,namePlayer2: nil)
-                    startBattle()
-                case "2":
-                    print("\nLa bagarre entre amis il n'y a que ca de vrai !"
-                        + "\nJoueur 2 presentes toi !")
-                    if let namePlayer2 = readLine(){
-                        let nameP2 = namePlayer2
-                        print("\nVous devez avoir chacun trois Héros pour vous foutres dessus")
-                        creatPlayers(soloOuPas: "2", namePlayer1: namePlayer1, namePlayer2: nameP2)
+            while answere == true {
+                print("\nEs tu venu avec un autre guerrier ou "
+                    + "\nveux tu te frotter a notre ORDI TUEUR"
+                    + "\n\n1.SOLO / 2.AMIGO")
+                if let soloOuPas = readLine(){
+                    switch soloOuPas {
+                    case "1":
+                        player2 = creationOrdi()
+                        creatPlayers(soloOuPas: "1", namePlayer1: namePlayer1,namePlayer2: nil)
                         startBattle()
+                        answere = false
+                    case "2":
+                        print("\nLa bagarre entre amis il n'y a que ca de vrai !"
+                            + "\nJoueur 2 presentes toi !")
+                        if let namePlayer2 = readLine(){
+                            let nameP2 = namePlayer2
+                            print("\nVous devez avoir chacun trois Héros pour vous foutres dessus")
+                            creatPlayers(soloOuPas: "2", namePlayer1: namePlayer1, namePlayer2: nameP2)
+                            startBattle()
+                            answere = false
+                        }
+                    default :
+                        print("tu begailles ma parole !")
+                        answere = true
                     }
-                default :
-                    print("tu begailles ma parole !")
                 }
             }
         }
@@ -52,11 +58,11 @@ class Game{
     var endGame = false
     
     func creationOrdi()-> Player{
-        let tabTypeHero = [Archer(),Guerrier(),Espion(),Magicien(),Monstre()]
+        let tabTypeHero = ["1","2","3","4","5"]
         var tabHero: [Hero] = []
         for _ in 0...2 {
-            let hero = tabTypeHero.randomElement()
-            tabHero.append(hero!)
+            let hero = chooseYourHero(choice: tabTypeHero.randomElement()!)
+            tabHero.append(hero)
         }
         let  ordi = Player(name: "Rachid 2.0", numberOfPlayers: 1,warriors1: tabHero[0], warriors2: tabHero[1], warriors3: tabHero[2])
         return ordi
@@ -64,31 +70,58 @@ class Game{
     
     func createHeros(compteur: Int,sentenceTable: [String])-> Hero{
         var hero: Hero?
-        print("\n\(sentenceTable[compteur])"
-            + "\n 1. L'archer"
-            + "\n 2. Le guerrier"
-            + "\n 3. L'espion"
-            + "\n 4. Le magicien"
-            + "\n 5. Le MONSTRE")
-        if let firsChoice = readLine() {
-            switch firsChoice {
-            case "1":
-                hero = Archer()
-            case "2":
-                hero = Guerrier()
-            case "3":
-                hero = Espion()
-            case "4":
-                hero = Magicien()
-            case "5":
-                hero = Monstre()
-            default:
-                print("Je n'ai pas compris la réponse")
+        var answere = true
+        while answere == true {
+            print("\n\(sentenceTable[compteur])"
+                + "\n 1. L'archer"
+                + "\n 2. Le guerrier"
+                + "\n 3. L'espion"
+                + "\n 4. Le magicien"
+                + "\n 5. Le MONSTRE")
+            if let firsChoice = readLine() {
+                switch firsChoice {
+                case "1":
+                   hero = chooseYourHero(choice: "1")
+                    answere = false
+                case "2":
+                    hero = chooseYourHero(choice: "2")
+                    answere = false
+                case "3":
+                    hero = chooseYourHero(choice: "3")
+                    answere = false
+                case "4":
+                    hero = chooseYourHero(choice: "4")
+                    answere = false
+                case "5":
+                    hero = chooseYourHero(choice: "5")
+                    answere = false
+                default:
+                    print("Je n'ai pas compris la réponse")
+                    answere = true
+                }
             }
         }
         return hero!
     }
     
+    func chooseYourHero(choice: String)-> Hero{
+        var hero: Hero?
+        switch choice {
+        case "1":
+            hero = Archer()
+        case "2":
+            hero = Guerrier()
+        case "3":
+            hero = Espion()
+        case "4":
+            hero = Magicien()
+        case "5":
+            hero = Monstre()
+        default:
+            print("Je n'ai pas compris la réponse")
+        }
+        return hero!
+    }
     
     func creatPlayers(soloOuPas: String, namePlayer1: String,namePlayer2: String?){
         var heroTab1 : [Hero] = []
