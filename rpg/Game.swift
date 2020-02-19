@@ -196,7 +196,7 @@ class Game{
                 if let hero1 = readLine(){
                     let hero = Int(hero1)! - 1
                     let heroAttaque = player1!.warriorsPlayer[hero]
-                    heroAttaque.heroTechnic(player: player1!)
+                    heroAttaque.heroTechnics(player: player1!)
                     print("Qui veux tu attaquer ?"
                         + "\n1. \(player2!.warriorsPlayer[0].name!)" + "     | 2. \(player2!.warriorsPlayer[1].name!)" + "     | 3. \(player2!.warriorsPlayer[2].name!)")
                     print("life:\(player2!.warriorsPlayer[0].life)" + "     | life:\(player2!.warriorsPlayer[1].life)" + "     | life: \(player2!.warriorsPlayer[2].life)")
@@ -216,7 +216,7 @@ class Game{
                 if let hero1 = readLine(){
                     let heroP2 = Int(hero1)! - 1
                     let heroAttaqueP2 = player2!.warriorsPlayer[heroP2]
-                    heroAttaqueP2.heroTechnic(player: player2!)
+                    heroAttaqueP2.heroTechnics(player: player2!)
                     print("Qui veux tu attaquer ?"
                         + "\n1. \(player1!.warriorsPlayer[0].name!)" + "     2. \(player1!.warriorsPlayer[1].name!)" + "     3. \(player1!.warriorsPlayer[2].name!)")
                     print("  life:\(player1!.warriorsPlayer[0].life)" + "      life:\(player1!.warriorsPlayer[1].life)" + "     life: \(player1!.warriorsPlayer[2].life)")

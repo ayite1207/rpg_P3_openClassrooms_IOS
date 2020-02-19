@@ -18,7 +18,7 @@ class Archer: Hero{
         print("Je suis un archer!!")
     }
     
-    override func heroTechnic(player: Player){
+    override func heroTechnics(player: Player){
         print("JE SUIS DANS LA FONCTION heroTechnic DE LA CLASSE ARCHER!!!!!!!")
         var bonChoix = true
         fight += 1

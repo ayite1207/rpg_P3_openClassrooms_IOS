@@ -10,10 +10,10 @@ import Foundation
 
 /**
 Class Hero : Mother Class wich allows to create the other Class of hero  (archer, guerrier etc ).
- 
+
  Contain all properties and methods common to other classes
  
-    - Propriétés:
+    - Properties:
         - name: the name of the héro selected
         -  cate: the category of the hero selected (archer, guerrier etc )
         -  care: the number of points which make it possible to treat someone
@@ -21,10 +21,16 @@ Class Hero : Mother Class wich allows to create the other Class of hero  (archer
         -  fight: the number of time a hero fight
         -  defense: the number of time a hero defense
         -  typeOfAttack: the type of attack a hero choose to use
-    
+
     -  Enum:
         -  Cate: lets choose the type of héro
- 
+
+    - Méthods:
+        - init(cate: Cate) : obligate to insert a parametre of type Cate for create an intance of the class hero
+        - initialization(cate: Cate): withe the parametre Cate, allows to initialate properties cate , name, life, attack
+        - heroTechnic(player: Player) allows to choose  what technique can be used in fonction of the number of rounds
+        - whatTechnic(player2: Player, heroPlayer2 : Hero, typeOfTechnic: Int) call the function corresponding to the chosen attack
+        - normalAttack(player2: Player, heroPlayer2 : Hero) allows to make a basic attaque
 */
 class Hero{
     var name: String?
@@ -48,35 +54,35 @@ class Hero{
     func initialization(cate: Cate){
         switch cate {
         case .archer:
-            self.cate = .archer
+            self.cate = cate
             name = "Green"
             life = 100
             attack = 20
         case .guerrier:
-            self.cate = .guerrier
+            self.cate = cate
             name = "Conan"
             life = 100
             attack = 35
         case .espion:
-            self.cate = .espion
+            self.cate = cate
             name = "Ninja"
             life = 100
             attack = 20
         case .magicien:
-            self.cate = .magicien
+            self.cate = cate
             name = "Jafar"
             life = 80
             attack = 10
             care = 20
         case .MONSTRE:
-            self.cate = .MONSTRE
+            self.cate = cate
             name = "Albus"
             life = 80
             attack = 45
         }
     }
     
-    func heroTechnic(player: Player){
+    func heroTechnics(player: Player){
         print("je suis dans la fonction hero technic DE LA CLASSE HERO")
     }
 
@@ -85,21 +91,7 @@ class Hero{
     }
     
     func normalAttack(player2: Player, heroPlayer2 : Hero){
-        print("JE SUIS DANS LA FONCTION ATTACK DE LA CLASSE HERO!!!!!!!")
-        if heroPlayer2.life > 0 {
-            heroPlayer2.life -= attack
-            heroPlayer2.defense += 1
-            if heroPlayer2.life > 0 {
-                print("\n\(name!) attaque ! \(heroPlayer2.name!) perd \(attack) point de vie !"
-                    + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
-            } else {
-                heroPlayer2.life = 0
-                print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
-            }
-        }else {
-            heroPlayer2.life = 0
-            print("\n\(heroPlayer2.name!) est déja mort dommage !")
-        }
+         print("je suis dans la fonction normalAttack DE LA CLASSE HERO")
     }
     
 }

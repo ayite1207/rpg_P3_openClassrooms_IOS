@@ -19,7 +19,7 @@ class Guerrier: Hero{
            print("Je suis un guerrier!!")
        }
     
-    override func heroTechnic(player: Player){
+    override func heroTechnics(player: Player){
        var bonChoix = true
        fight += 1
        if player.round >= 3 {

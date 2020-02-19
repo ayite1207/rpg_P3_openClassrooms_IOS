@@ -19,7 +19,7 @@ class Magicien: Hero{
         print("Je suis un magicien!!")
     }
     
-    override func heroTechnic(player: Player){
+    override func heroTechnics(player: Player){
         var bonChoix = true
         self.fight += 1
         if player.round >= 3 {
