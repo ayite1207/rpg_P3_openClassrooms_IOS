@@ -10,8 +10,9 @@ import Foundation
 
 class Archer: Hero{
     
-    init(){
+    init(name: String){
         super.init(cate: .archer)
+        self.name = name
     }
     
     func presentation(){

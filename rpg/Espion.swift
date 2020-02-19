@@ -10,9 +10,9 @@ import Foundation
 
 class Espion: Hero{
     
-    init(){
+    init(name: String){
         super.init(cate: .espion)
-        
+        self.name = name
     }
     
     func presentation(){

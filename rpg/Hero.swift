@@ -34,7 +34,6 @@ Class Hero : Mother Class wich allows to create the other Class of hero  (archer
 */
 class Hero{
     var name: String?
-    var cate: Cate?
     var life: Int = 0
     var care = 0
     var attack = 0
@@ -47,35 +46,29 @@ class Hero{
     }
     
     init(cate: Cate) {
-        self.cate = cate
         initialization(cate: cate)
     }
     
     func initialization(cate: Cate){
         switch cate {
         case .archer:
-            self.cate = cate
             name = "Green"
             life = 100
             attack = 20
         case .guerrier:
-            self.cate = cate
             name = "Conan"
             life = 100
             attack = 35
         case .espion:
-            self.cate = cate
             name = "Ninja"
             life = 100
             attack = 20
         case .magicien:
-            self.cate = cate
             name = "Jafar"
             life = 80
             attack = 10
             care = 20
         case .MONSTRE:
-            self.cate = cate
             name = "Albus"
             life = 80
             attack = 45

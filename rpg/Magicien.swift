@@ -10,9 +10,9 @@ import Foundation
 
 class Magicien: Hero{
     
-    init(){
+    init(name: String){
         super.init(cate: .magicien)
-        
+        self.name = name
     }
     
     func presentation(){

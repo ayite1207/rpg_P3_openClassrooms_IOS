@@ -11,9 +11,11 @@ import Foundation
 class Game{
     var player1 : Player?
     var player2 : Player?
+    var heroName: [String] = []
+    var endGame = false
     
     func startGame(){
-        var answere = true
+        var answer = true
         print("\n----------------------------------------")
         print("           BATTLE ROYALE")
         print("----------------------------------------")
@@ -25,17 +27,18 @@ class Game{
             print("===============================")
             print("     Bienvenue toi \(namePlayer1)")
             print("===============================")
-            while answere == true {
+            while answer == true {
                 print("\nEs tu venu avec un autre guerrier ou "
                     + "\nveux tu te frotter a notre ORDI TUEUR"
                     + "\n\n1.SOLO / 2.AMIGO")
                 if let soloOuPas = readLine(){
                     switch soloOuPas {
                     case "1":
+                        print("SOLO!!")
                         player2 = creationOrdi()
                         creatPlayers(soloOuPas: "1", namePlayer1: namePlayer1,namePlayer2: nil)
                         startBattle()
-                        answere = false
+                        answer = false
                     case "2":
                         print("\nLa bagarre entre amis il n'y a que ca de vrai !"
                             + "\nJoueur 2 presentes toi !")
@@ -44,24 +47,23 @@ class Game{
                             print("\nVous devez avoir chacun trois Héros pour vous foutres dessus")
                             creatPlayers(soloOuPas: "2", namePlayer1: namePlayer1, namePlayer2: nameP2)
                             startBattle()
-                            answere = false
+                            answer = false
                         }
                     default :
                         print("tu begailles ma parole !")
-                        answere = true
+                        answer = true
                     }
                 }
             }
         }
     }
     
-    var endGame = false
-    
     func creationOrdi()-> Player{
+        print("FUNCTION creationOrdi !!!!!!")
         let tabTypeHero = ["1","2","3","4","5"]
         var tabHero: [Hero] = []
         for _ in 0...2 {
-            let hero = chooseYourHero(choice: tabTypeHero.randomElement()!)
+            let hero = chooseYourHero(choice: tabTypeHero.randomElement()!, ordi: true)
             tabHero.append(hero)
         }
         let  ordi = Player(name: "Rachid 2.0", numberOfPlayers: 1,warriors1: tabHero[0], warriors2: tabHero[1], warriors3: tabHero[2])
@@ -81,19 +83,19 @@ class Game{
             if let firsChoice = readLine() {
                 switch firsChoice {
                 case "1":
-                   hero = chooseYourHero(choice: "1")
+                    hero = chooseYourHero(choice: "1", ordi: false)
                     answere = false
                 case "2":
-                    hero = chooseYourHero(choice: "2")
+                    hero = chooseYourHero(choice: "2", ordi: false)
                     answere = false
                 case "3":
-                    hero = chooseYourHero(choice: "3")
+                    hero = chooseYourHero(choice: "3", ordi: false)
                     answere = false
                 case "4":
-                    hero = chooseYourHero(choice: "4")
+                    hero = chooseYourHero(choice: "4", ordi: false)
                     answere = false
                 case "5":
-                    hero = chooseYourHero(choice: "5")
+                    hero = chooseYourHero(choice: "5", ordi: false)
                     answere = false
                 default:
                     print("Je n'ai pas compris la réponse")
@@ -103,27 +105,123 @@ class Game{
         }
         return hero!
     }
+    func ifNameExiste(name: String)-> Bool{
+        for i in heroName{
+            print(i)
+        }
+        var answer = false
+        if heroName.count == 0 {
+            print("le non n'existe pas !!!")
+            answer = true
+            heroName.append(name)
+        }else {
+            for hName in heroName{
+                if hName == name{
+                    answer = false
+                    break
+                }else {
+                    print("le non n'existe pas !!!")
+                    answer = true
+                }
+            }
+        }
+        if answer == true && heroName.count != 0 {
+            heroName.append(name)
+        }
+        return answer
+    }
     
-    func chooseYourHero(choice: String)-> Hero{
+    func chooseYourHero(choice: String, ordi: Bool)-> Hero{
         var hero: Hero?
-        switch choice {
-        case "1":
-            hero = Archer()
-        case "2":
-            hero = Guerrier()
-        case "3":
-            hero = Espion()
-        case "4":
-            hero = Magicien()
-        case "5":
-            hero = Monstre()
-        default:
-            print("Je n'ai pas compris la réponse")
+        var nom = true
+        if ordi == true {
+            switch choice {
+            case "1":
+                hero = Archer(name: "Robin")
+            case "2":
+                hero = Guerrier(name: "Conan")
+            case "3":
+                hero = Espion(name: "Kakashi")
+            case "4":
+                hero = Magicien(name: "Merlin")
+            case "5":
+                hero = Monstre(name: "Broly")
+            default:
+                print("Je n'ai pas compris la réponse")
+            }
+        } else {
+            while nom == true {
+                switch choice {
+                case "1":
+                    print("Comment s'appelle archer ?")
+                    if let name = readLine(){
+                        let testName = ifNameExiste(name: name)
+                        if testName == true {
+                            hero = Archer(name: name)
+                            nom = false
+                        } else {
+                            print("Ce prenon existe déjà choisis en un autre !")
+                            nom = true
+                        }
+                    }
+                case "2":
+                    print("Comment s'appelle ton guerrier ?")
+                    if let name = readLine(){
+                        let testName = ifNameExiste(name: name)
+                        if testName == true {
+                            hero = Guerrier(name: name)
+                            nom = false
+                        } else {
+                            print("Ce prenon existe déjà choisis en un autre !")
+                            nom = true
+                        }
+                    }
+                case "3":
+                    print("Comment s'appelle ton espion ?")
+                    if let name = readLine(){
+                        let testName = ifNameExiste(name: name)
+                        if testName == true {
+                            hero = Espion(name: name)
+                            nom = false
+                        } else {
+                            print("Ce prenon existe déjà choisis en un autre !")
+                            nom = true
+                        }
+                    }
+                case "4":
+                    print("Comment s'appelle ton espion ?")
+                    if let name = readLine(){
+                        let testName = ifNameExiste(name: name)
+                        if testName == true {
+                            hero = Magicien(name: name)
+                            nom = false
+                        } else {
+                            print("Ce prenon existe déjà choisis en un autre !")
+                            nom = true
+                        }
+                    }
+                case "5":
+                    print("Comment s'appelle ton espion ?")
+                    if let name = readLine(){
+                        let testName = ifNameExiste(name: name)
+                        if testName == true {
+                            hero = Monstre(name: name)
+                            nom = false
+                        } else {
+                            print("Ce prenon existe déjà choisis en un autre !")
+                            nom = true
+                        }
+                    }
+                default:
+                    print("Je n'ai pas compris la réponse")
+                }
+            }
         }
         return hero!
     }
     
     func creatPlayers(soloOuPas: String, namePlayer1: String,namePlayer2: String?){
+        print("FONCTION creatPlayers !!!!!!!!!")
         var heroTab1 : [Hero] = []
         var heroTab2 : [Hero] = []
         let sentenceTable = ["Fais ton premier choix","HA HA !tres bon choix \(namePlayer1)" + "\nFais ton second choix", "Fais ton dernier choix !!!"]
