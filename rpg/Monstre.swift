@@ -24,14 +24,16 @@ class Monstre: Hero{
         fight += 1
         if player.round >= 3 {
             while bonChoix == true {
-                print("Ton espion à acquis de l'experience, tu as débloqué COUP FATAL  !"
+                print("Monstre à acquis de l'experience, tu as débloqué COUP FATAL  !"
                     + "\n 1. ATTACK NORMAL 2. COUP FATAL")
                 if let choix = readLine(){
                     switch choix {
                     case "1":
+                        normalAttack += 1
                         typeOfAttack = 1
                         bonChoix = false
                     case "2":
+                        superAttack += 1
                         typeOfAttack = 2
                         bonChoix = false
                     default:
@@ -41,6 +43,7 @@ class Monstre: Hero{
                 }
             }
         } else {
+            normalAttack += 1
             typeOfAttack = 1
         }
     }
@@ -87,15 +90,16 @@ class Monstre: Hero{
             let superAttack = attack * 2
             heroPlayer2.life -= superAttack
             heroPlayer2.defense += 1
-            print("MAGIE ! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
+            if heroPlayer2.life > 0{
+                print("TADA ! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
                 + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
-            if heroPlayer2.life < 0 {
+            }else {
                 heroPlayer2.life = 0
-                print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
+                print("\nBOOM ! \(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
             }
         }else {
             heroPlayer2.life = 0
-            print("\n\(heroPlayer2.name!) est déja mort dommage !")
+            print("\n MINCE !\(heroPlayer2.name!) est déja mort dommage !")
         }
     }
 }

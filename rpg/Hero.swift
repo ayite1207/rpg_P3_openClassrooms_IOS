@@ -34,13 +34,16 @@ Class Hero : Mother Class wich allows to create the other Class of hero  (archer
 */
 class Hero{
     var name: String?
+    var type: String?
     var life: Int = 0
     var care = 0
     var attack = 0
     var fight: Int = 0
     var defense: Int = 0
     var typeOfAttack = 0
-    
+    var normalAttack = 0
+    var superAttack = 0
+    var coffreMagique = 0
     enum Cate{
         case archer,guerrier, espion,magicien, MONSTRE
     }
@@ -55,23 +58,28 @@ class Hero{
             name = "Green"
             life = 100
             attack = 20
+            type = "L'Archer"
         case .guerrier:
             name = "Conan"
             life = 100
             attack = 35
+            type = "Le Guerrier"
         case .espion:
             name = "Ninja"
             life = 100
             attack = 20
+            type = "L'Espion"
         case .magicien:
             name = "Jafar"
             life = 80
             attack = 10
             care = 20
+            type = "Le Mage"
         case .MONSTRE:
             name = "Albus"
             life = 80
             attack = 45
+            type = "Le Monstre"
         }
     }
     

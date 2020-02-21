@@ -29,9 +29,11 @@ class Magicien: Hero{
                 if let choix = readLine(){
                     switch choix {
                     case "1":
+                        normalAttack += 1
                         typeOfAttack = 1
                         bonChoix = false
                     case "2":
+                        superAttack += 1
                         typeOfAttack = 2
                         bonChoix = false
                     default:
@@ -41,6 +43,7 @@ class Magicien: Hero{
                 }
             }
         } else {
+            normalAttack += 1
             typeOfAttack = 1
         }
     }
@@ -65,12 +68,12 @@ class Magicien: Hero{
                 heroPlayer2.life -= attack
                 heroPlayer2.defense += 1
                 if heroPlayer2.life > 0 {
-                    print("\n\(name!) attaque ! \(heroPlayer2.name!) perd \(attack) point de vie !"
+                    print("\nABRACADABRA ! \(heroPlayer2.name!) perd \(attack) point de vie !"
                         + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
                     bonChoix = false
                 } else {
                     heroPlayer2.life = 0
-                    print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
+                    print("\nnABRACADABRA !" + "\(heroPlayer2.name!) est mort!")
                     bonChoix = false
                 }
             }else {

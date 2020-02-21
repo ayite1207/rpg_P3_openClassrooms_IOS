@@ -153,7 +153,7 @@ class Game{
             while nom == true {
                 switch choice {
                 case "1":
-                    print("Comment s'appelle archer ?")
+                    print("Comment s'appelle ton archer ?")
                     if let name = readLine(){
                         let testName = ifNameExiste(name: name)
                         if testName == true {
@@ -189,7 +189,7 @@ class Game{
                         }
                     }
                 case "4":
-                    print("Comment s'appelle ton espion ?")
+                    print("Comment s'appelle ton mage ?")
                     if let name = readLine(){
                         let testName = ifNameExiste(name: name)
                         if testName == true {
@@ -201,7 +201,7 @@ class Game{
                         }
                     }
                 case "5":
-                    print("Comment s'appelle ton espion ?")
+                    print("Comment s'appelle ton Monstre ?")
                     if let name = readLine(){
                         let testName = ifNameExiste(name: name)
                         if testName == true {
@@ -303,7 +303,6 @@ class Game{
                         let hero3 = Int(hero2)! - 1
                         let heroDefence = player2!.warriorsPlayer[hero3]
                         heroAttaque.whatTechnic(player2: player2!, heroPlayer2: heroDefence, typeOfTechnic: heroAttaque.typeOfAttack)
-                        //                            attaque(player: player1!, hero1: heroAttaque, hero2: heroDefence)
                     }
                 }
             } else {
@@ -322,7 +321,6 @@ class Game{
                         let hero2P1 = Int(hero2)! - 1
                         let heroDefense2 = player1!.warriorsPlayer[hero2P1]
                         heroAttaqueP2.whatTechnic(player2: player1!, heroPlayer2: heroDefense2, typeOfTechnic:heroAttaqueP2.typeOfAttack )
-                        //                           attaque(player: player2!, hero1: heroAttaqueP2, hero2: heroDefense2)
                     }
                 }
                 displayHeroLife(hero1: player1!,hero2: player2! )
@@ -332,7 +330,7 @@ class Game{
     }
     
     func whoseWin()-> Bool{
-        
+        let stat = Stat(player1: player1!, player2: player2!)
         var lifePlayer1: Int = 0
         for warrior in player1!.warriorsPlayer{
             lifePlayer1 += warrior.life
@@ -347,13 +345,15 @@ class Game{
             print("\n\n=============================")
             print("     VICTOIRE de \(player2!.name) ")
             print("=============================")
-            //                whoseWin()
+            player2?.winner = true
+            stat.statEndGame(player1: player1!, player2: player2!)
             return false
         } else if lifePlayer2 <= 0 {
             print("\n\n=============================")
             print("     VICTOIRE de \(player1!.name) ")
             print("=============================")
-            //                whoseWin()
+            player1?.winner = true
+            stat.statEndGame(player1: player1!, player2: player2!)
             return false
         }
         return true
@@ -374,10 +374,5 @@ class Game{
             }
         }
     }
-    
-    func superAttack(hero: Hero){
-        print("\(hero.name) a attaqué \(hero.fight) fois et c'est défendu \(hero.defense) fois")
-    }
-    
 }
 

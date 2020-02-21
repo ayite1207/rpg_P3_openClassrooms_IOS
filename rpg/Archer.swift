@@ -22,7 +22,6 @@ class Archer: Hero{
     override func heroTechnics(player: Player){
         print("JE SUIS DANS LA FONCTION heroTechnic DE LA CLASSE ARCHER!!!!!!!")
         var bonChoix = true
-        fight += 1
         if player.round >= 3 {
             while bonChoix == true {
                 print("Ton archer à acquis de l'experience, tu as débloqué l'attaque cloche !"
@@ -30,9 +29,11 @@ class Archer: Hero{
                 if let choix = readLine(){
                     switch choix {
                     case "1":
+                        normalAttack += 1
                         typeOfAttack = 1
                         bonChoix = false
                     case "2":
+                        superAttack += 1
                         typeOfAttack = 2
                         bonChoix = false
                     default:
@@ -42,6 +43,7 @@ class Archer: Hero{
                 }
             }
         } else {
+            normalAttack += 1
             typeOfAttack = 1
         }
     }
@@ -89,11 +91,12 @@ class Archer: Hero{
             let superAttack = 30
             heroPlayer2.life -= superAttack
             heroPlayer2.defense += 1
-            print("les fleches pleuvent! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
+           if heroPlayer2.life > 0{
+                print("LES FLECHES PLEUVENT ! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
                 + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
-            if heroPlayer2.life < 0 {
+            }else {
                 heroPlayer2.life = 0
-                print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
+                print("\nEN PLEINE TETE !" + "\(heroPlayer2.name!) est mort!")
             }
         }else {
             heroPlayer2.life = 0

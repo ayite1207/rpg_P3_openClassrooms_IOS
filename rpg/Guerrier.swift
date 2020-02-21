@@ -20,8 +20,8 @@ class Guerrier: Hero{
     }
     
     override func heroTechnics(player: Player){
-        var bonChoix = true
         fight += 1
+        var bonChoix = true
         if player.round >= 3 {
             while bonChoix == true {
                 print("Ton Guerrier à acquis de l'experience, tu as débloqué COUP D'ÉPÉE SURPUISSANT !"
@@ -29,9 +29,11 @@ class Guerrier: Hero{
                 if let choix = readLine(){
                     switch choix {
                     case "1":
+                        normalAttack += 1
                         typeOfAttack = 1
                         bonChoix = false
                     case "2":
+                        superAttack += 1
                         typeOfAttack = 2
                         bonChoix = false
                     default:
@@ -41,6 +43,7 @@ class Guerrier: Hero{
                 }
             }
         } else {
+            normalAttack += 1
             typeOfAttack = 1
         }
     }
@@ -87,11 +90,12 @@ class Guerrier: Hero{
             let superAttack = 45
             heroPlayer2.life -= superAttack
             heroPlayer2.defense += 1
-            print("COUPS D ÉPÉE SURPUISSANT! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
+          if heroPlayer2.life > 0{
+                print("COUP D'ÉPÉE SURPUISSANT ! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
                 + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
-            if heroPlayer2.life < 0 {
+            }else {
                 heroPlayer2.life = 0
-                print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
+                print("\nJe crois que \(heroPlayer2.name!) est mort!")
             }
         }else {
             heroPlayer2.life = 0

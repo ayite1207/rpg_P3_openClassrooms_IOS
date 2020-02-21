@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA174C0523FEB41C001D283C /* Stat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA174C0423FEB41C001D283C /* Stat.swift */; };
 		EA43025023E42634006EF184 /* Guerrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA43024F23E42634006EF184 /* Guerrier.swift */; };
 		EA43025223E42DBD006EF184 /* Archer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA43025123E42DBD006EF184 /* Archer.swift */; };
 		EA43025423E42F12006EF184 /* Espion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA43025323E42F12006EF184 /* Espion.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EA174C0423FEB41C001D283C /* Stat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stat.swift; sourceTree = "<group>"; };
 		EA43024F23E42634006EF184 /* Guerrier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guerrier.swift; sourceTree = "<group>"; };
 		EA43025123E42DBD006EF184 /* Archer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archer.swift; sourceTree = "<group>"; };
 		EA43025323E42F12006EF184 /* Espion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Espion.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				EA43025523E42F8E006EF184 /* Magicien.swift */,
 				EA43025723E42FDF006EF184 /* Monstre.swift */,
 				EA43025923E430A1006EF184 /* Joueur.swift */,
+				EA174C0423FEB41C001D283C /* Stat.swift */,
 				EA43025B23E43311006EF184 /* Game.swift */,
 				EA43BB3D23E395AE004E4101 /* main.swift */,
 			);
@@ -147,6 +150,7 @@
 				EA43025423E42F12006EF184 /* Espion.swift in Sources */,
 				EA43025C23E43311006EF184 /* Game.swift in Sources */,
 				EA43025A23E430A1006EF184 /* Joueur.swift in Sources */,
+				EA174C0523FEB41C001D283C /* Stat.swift in Sources */,
 				EA43025223E42DBD006EF184 /* Archer.swift in Sources */,
 				EA43025023E42634006EF184 /* Guerrier.swift in Sources */,
 				EA43BB3E23E395AE004E4101 /* main.swift in Sources */,
