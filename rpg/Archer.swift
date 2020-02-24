@@ -19,13 +19,28 @@ class Archer: Hero{
         print("Je suis un archer!!")
     }
     
-    override func heroTechnics(player: Player){
-        print("JE SUIS DANS LA FONCTION heroTechnic DE LA CLASSE ARCHER!!!!!!!")
+    /**
+       - coffre() return a number between 1 and 3
+     */
+    
+    func coffre()-> Int{
+        let numero: [Int] = [1,2,3]
+        return numero.randomElement()!
+    }
+    
+    /**
+       - heroTechnic() allows to choose  what technique can be used
+     */
+    
+    override func heroTechnics(){
+        let leCoffre = coffre()
+        let coffre1 = coffre()
+        fight += 1
         var bonChoix = true
-        if player.round >= 3 {
+        if coffre1 >= leCoffre {
             while bonChoix == true {
-                print("Ton archer à acquis de l'experience, tu as débloqué l'attaque cloche !"
-                    + "\n 1. ATTACK NORMAL 2. SUPER ATTACK")
+                print("Un COFFRE apparait, Choisi une nouvelle arme !"
+                    + "\n 1. ARC NORMAL 2. ARC À TROIS FLECHES")
                 if let choix = readLine(){
                     switch choix {
                     case "1":
@@ -48,22 +63,42 @@ class Archer: Hero{
         }
     }
     
-    override func whatTechnic(player2: Player, heroPlayer2 : Hero, typeOfTechnic: Int){
-        print("JE SUIS DANS LA FONCTION whatTechnic DE LA CLASSE ARCHER!!!!!!!")
+    /**
+     Call the function corresponding to the chosen attack
+        
+     ```
+     Archer.whatTechnic(player2: player1, heroPlayer2 : Archer, typeOfTechnic: 1)
+     ```
+     - Parameters:
+        - player2 : the player who will be attacked
+        - heroPlayer :the hero who will attack
+        - typeOfTechnic : the type of attack used
+    */
+    
+    override func whatTechnic(player2: Player,heroPlayer2 : Hero, typeOfTechnic: Int){
         switch typeOfTechnic {
         case 1:
-            normalAttack(player2: player2, heroPlayer2 : heroPlayer2)
+            normalAttack( heroPlayer2 : heroPlayer2)
         case 2:
-            superAttack(player2: player2, heroPlayer2 : heroPlayer2)
+            superAttack(heroPlayer2 : heroPlayer2)
         default:
             print("erreur dans la fonction whatTechnic !!!!")
         }
     }
     
-    override func normalAttack(player2: Player, heroPlayer2 : Hero){
+    /**
+     Allows to attack the hero selected in parameters
+      
+      ```
+      Archer.normalAttack(heroPlayer2 : Archer)
+      ```
+      
+     - Parameters:
+          - heroPlayer2: hero who will be attacked
+     */
+    
+    override func normalAttack(heroPlayer2 : Hero){
         var bonChoix = true
-        print("JE SUIS DANS LA FONCTION ATTACK normal DE LA CLASSE ARCHER!!!!!!!")
-        print("ROUND N° \(player2.round)")
         while bonChoix == true {
             if heroPlayer2.life > 0 {
                 heroPlayer2.life -= attack
@@ -85,15 +120,26 @@ class Archer: Hero{
         }
     }
     
-    func superAttack(player2: Player, heroPlayer2 : Hero){
+    /**
+     Allows to attack whit a super attack the hero selected in parameters
+      
+      ```
+      Archer.superAttack(heroPlayer2 : Archer)
+      ```
+      
+     - Parameters:
+          - heroPlayer2: hero who will be attacked
+     */
+    
+    func superAttack(heroPlayer2 : Hero){
         print("JE SUIS DANS LA FONCTION SUPER ATTACK DE LA CLASSE ARCHER!!!!!!!")
         if heroPlayer2.life > 0 {
             let superAttack = 30
             heroPlayer2.life -= superAttack
             heroPlayer2.defense += 1
-           if heroPlayer2.life > 0{
-                print("LES FLECHES PLEUVENT ! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
-                + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
+            if heroPlayer2.life > 0{
+                print("TROIS FLECHES DANS LE CORP ! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
+                    + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
             }else {
                 heroPlayer2.life = 0
                 print("\nEN PLEINE TETE !" + "\(heroPlayer2.name!) est mort!")

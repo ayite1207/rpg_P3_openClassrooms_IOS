@@ -21,14 +21,15 @@ Class Hero : Mother Class wich allows to create the other Class of hero  (archer
         -  fight: the number of time a hero fight
         -  defense: the number of time a hero defense
         -  typeOfAttack: the type of attack a hero choose to use
+        - normalAttack: count the number of time who normalAttack is used
+        -  superAttack: count the number of time who superAttack is used
+        -  coffreMagique: the type of attack a hero coffreMagique to use
 
     -  Enum:
         -  Cate: lets choose the type of héro
 
     - Méthods:
-        - init(cate: Cate) : obligate to insert a parametre of type Cate for create an intance of the class hero
-        - initialization(cate: Cate): withe the parametre Cate, allows to initialate properties cate , name, life, attack
-        - heroTechnic(player: Player) allows to choose  what technique can be used in fonction of the number of rounds
+      
         - whatTechnic(player2: Player, heroPlayer2 : Hero, typeOfTechnic: Int) call the function corresponding to the chosen attack
         - normalAttack(player2: Player, heroPlayer2 : Hero) allows to make a basic attaque
 */
@@ -37,6 +38,7 @@ class Hero{
     var type: String?
     var life: Int = 0
     var care = 0
+    var typeCate: Cate?
     var attack = 0
     var fight: Int = 0
     var defense: Int = 0
@@ -44,54 +46,93 @@ class Hero{
     var normalAttack = 0
     var superAttack = 0
     var coffreMagique = 0
+    
     enum Cate{
         case archer,guerrier, espion,magicien, MONSTRE
     }
-    
+    /**
+     Méthods:
+     - init(cate: Cate) : obligate to insert a parametre of type Cate for create an intance of the class hero
+
+     */
     init(cate: Cate) {
         initialization(cate: cate)
     }
-    
+    /**
+      func - initialization(cate: Cate): withe the parametre Cate, allows to initialate properties cate , name, life, attack
+     
+      - Parameters:
+       - cate : allows to initialate the settings of tha Class Hero
+     */
     func initialization(cate: Cate){
         switch cate {
         case .archer:
             name = "Green"
             life = 100
             attack = 20
+            typeCate = .archer
             type = "L'Archer"
         case .guerrier:
             name = "Conan"
             life = 100
             attack = 35
+            typeCate = .guerrier
             type = "Le Guerrier"
         case .espion:
             name = "Ninja"
             life = 100
             attack = 20
+            typeCate = .espion
             type = "L'Espion"
         case .magicien:
             name = "Jafar"
             life = 80
             attack = 10
             care = 20
+            typeCate = .magicien
             type = "Le Mage"
         case .MONSTRE:
             name = "Albus"
             life = 80
             attack = 45
+            typeCate = .MONSTRE
             type = "Le Monstre"
         }
     }
     
-    func heroTechnics(player: Player){
+    /**
+       - heroTechnic() allows to choose  what technique can be used
+     */
+    
+    func heroTechnics(){
         print("je suis dans la fonction hero technic DE LA CLASSE HERO")
     }
-
+    /**
+     Call the function corresponding to the chosen attack
+        
+     ```
+     Archer.whatTechnic(player2: player1, heroPlayer2 : Archer, typeOfTechnic: 1)
+     ```
+     - Parameters:
+        - player2 : the player who will be attacked
+        - heroPlayer :the hero who will attack
+        - typeOfTechnic : the type of attack used
+    */
+    
     func whatTechnic(player2: Player, heroPlayer2 : Hero, typeOfTechnic: Int){
         print("je suis dans la fonction whatTechnic DE LA CLASSE HERO")
     }
-    
-    func normalAttack(player2: Player, heroPlayer2 : Hero){
+    /**
+     Allows to attack the hero selected in parameters
+      
+      ```
+      Archer.normalAttack(heroPlayer2 : Archer)
+      ```
+      
+     - Parameters:
+          - heroPlayer2: hero who will be attacked
+     */
+    func normalAttack( heroPlayer2 : Hero){
          print("je suis dans la fonction normalAttack DE LA CLASSE HERO")
     }
     
