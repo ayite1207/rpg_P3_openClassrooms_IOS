@@ -9,17 +9,38 @@
 import Foundation
 
 class Player{
-    var name: String
-    var numberOfPlayers = 0
-    var round = 0
-    var warriorsPlayer : [Hero] = []
-    var winner : Bool = false
+    private var name: String
+    private var round = 0
+    private var warriorsPlayer : [Hero] = []
+    private var winner : Bool = false
     
     init(name: String, numberOfPlayers: Int,warriors1: Hero, warriors2: Hero, warriors3: Hero) {
-        self.numberOfPlayers = numberOfPlayers
         self.name = name
         warriorsPlayer.append(warriors1)
         warriorsPlayer.append(warriors2)
         warriorsPlayer.append(warriors3)
     }
+    /**
+     The get function allows to get the parameters of this class who are private
+     */
+    func getName()-> String {
+        return name
+    }
+    func getRound()-> Int{
+        return round
+    }
+    func getWarriorsPlayers()-> [Hero]{
+        return warriorsPlayer
+    }
+    func getWinner()-> Bool{
+        return winner
+    }
+    func setRonud(number: Int){
+        round += number
+    }
+    
+    func setWinner(winner: Bool){
+        self.winner = winner
+    }
+
 }

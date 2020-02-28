@@ -252,21 +252,22 @@ class Game{
     }
     
     func presentationPlayerHero(player: Player?){
+        let heroTab = player?.getWarriorsPlayers()
         if let player1 = player {
-            print("\(player1.name) possède trois héros :\n"
-                + "\n\(player1.warriorsPlayer[0].name!)     | life: \(player1.warriorsPlayer[0].life)   | attack: \(player1.warriorsPlayer[0].attack)   | care: \(player1.warriorsPlayer[0].care)  "
-                + "\n\(player1.warriorsPlayer[1].name!)     | life: \(player1.warriorsPlayer[1].life)   | attack: \(player1.warriorsPlayer[1].attack)   | care: \(player1.warriorsPlayer[1].care)  "
-                + "\n\(player1.warriorsPlayer[2].name!)     | life: \(player1.warriorsPlayer[2].life)   | attack: \(player1.warriorsPlayer[2].attack)   | care: \(player1.warriorsPlayer[2].care)  \n")
+            print("\(player1.getName()) possède trois héros :\n"
+                + "\n\(heroTab![0].getName())     | life: \(heroTab![0].getLife())   | attack: \(heroTab![0].getAttack())   | care: \(heroTab![0].getCare())  "
+                + "\n\(heroTab![1].getName())     | life: \(heroTab![1].getLife())   | attack: \(heroTab![1].getAttack())   | care: \(heroTab![1].getCare())  "
+                + "\n\(heroTab![2].getName())     | life: \(heroTab![2].getLife())   | attack: \(heroTab![2].getAttack())   | care: \(heroTab![2].getAttack())  \n")
         }
     }
     func begining(){
         print("\n\nCommencons par présenter nos deux guerriers!")
-        if player2?.name == "RAchid"{
-            print("\nAujourd'hui c'est \(player1!.name) et l'ORDI \(player2!.name) qui s'affrontent.\n")
+        if player2?.getName() == "RAchid"{
+            print("\nAujourd'hui c'est \(player1!.getName()) et l'ORDI \(player2!.getName()) qui s'affrontent.\n")
             presentationPlayerHero(player: player1!)
             presentationPlayerHero(player: player2!)
         }else {
-            print("\nAujourd'hui c'est \(player1!.name) et \(player2!.name) qui s'affrontent.\n")
+            print("\nAujourd'hui c'est \(player1!.getName()) et \(player2!.getName()) qui s'affrontent.\n")
             presentationPlayerHero(player: player1!)
             presentationPlayerHero(player: player2!)
         }
@@ -280,48 +281,50 @@ class Game{
         print("\nQUE LA BATAILLE COMMENCE\n")
         print("=============================")
         var continu = true
-        player1?.round += 1
-        player2?.round += 1
+        let player1HeroTab = player1?.getWarriorsPlayers()
+        let player2HeroTab = player2?.getWarriorsPlayers()
+        player1?.setRonud(number: 1)
+        player2?.setRonud(number: 1)
         
         while continu {
-            if player1?.round == player2?.round{
-                print("\nround \((player1?.round)!)")
+            if player1?.getRound() == player2?.getRound(){
+                print("\nround \((player1?.getRound())!)")
                 print("---------------------------\n")
-                player1?.round += 1
-                print((player1?.name)! + " choisi un de tes heros!"
-                    + "\n1. \(player1!.warriorsPlayer[0].name!)" + "     | 2. \(player1!.warriorsPlayer[1].name!)" + "     | 3. \(player1!.warriorsPlayer[2].name!)")
-                print("life:\(player1!.warriorsPlayer[0].life)" + "     | life:\(player1!.warriorsPlayer[1].life)" + "     | life: \(player1!.warriorsPlayer[2].life)")
-                print("attack:\(player1!.warriorsPlayer[0].attack)" + "    | attack:\(player1!.warriorsPlayer[1].attack)" + "   | attack: \(player1!.warriorsPlayer[2].attack)")
+                player1?.setRonud(number: 1)
+                print((player1?.getName())! + " choisi un de tes heros!"
+                    + "\n1. \(player1HeroTab![0].getName())" + "     | 2. \(player1HeroTab![1].getName())" + "     | 3. \(player1HeroTab![2].getName())")
+                print("life:\(player1HeroTab![0].getLife())" + "     | life:\(player1HeroTab![1].getLife())" + "     | life: \(player1HeroTab![2].getLife())")
+                print("attack:\(player1HeroTab![0].getAttack())" + "    | attack:\(player1HeroTab![1].getAttack())" + "   | attack: \(player1HeroTab![2].getAttack())")
                 if let hero1 = readLine(){
                     let hero = Int(hero1)! - 1
-                    let heroAttaque = player1!.warriorsPlayer[hero]
+                    let heroAttaque = player1HeroTab![hero]
                         heroAttaque.heroTechnics()
                     print("Qui veux tu attaquer ?"
-                        + "\n1. \(player2!.warriorsPlayer[0].name!)" + "     | 2. \(player2!.warriorsPlayer[1].name!)" + "     | 3. \(player2!.warriorsPlayer[2].name!)")
-                    print("life:\(player2!.warriorsPlayer[0].life)" + "     | life:\(player2!.warriorsPlayer[1].life)" + "     | life: \(player2!.warriorsPlayer[2].life)")
-                    print("attack:\(player2!.warriorsPlayer[0].attack)" + "    | attack:\(player2!.warriorsPlayer[1].attack)" + "     | attack: \(player2!.warriorsPlayer[2].attack)")
+                        + "\n1. \(player2HeroTab![0].getName())" + "     | 2. \(player2HeroTab![1].getName())" + "     | 3. \(player2HeroTab![2].getName())")
+                    print("life:\(player2HeroTab![0].getLife())" + "     | life:\(player2HeroTab![1].getLife())" + "     | life: \(player2HeroTab![2].getLife())")
+                    print("attack:\(player2HeroTab![0].getAttack())" + "    | attack:\(player2HeroTab![1].getAttack())" + "     | attack: \(player2HeroTab![2].getAttack())")
                     if let hero2 = readLine() {
                         let hero3 = Int(hero2)! - 1
-                        let heroDefence = player2!.warriorsPlayer[hero3]
-                        heroAttaque.whatTechnic(player2: player2!, heroPlayer2: heroDefence, typeOfTechnic: heroAttaque.typeOfAttack)
+                        let heroDefence = player2HeroTab![hero3]
+                        heroAttaque.whatTechnic(player2: player2!, heroPlayer2: heroDefence, typeOfTechnic: heroAttaque.getTypeOfAttack())
                     }
                 }
             } else {
-                player2?.round += 1
-                print("\(player2!.name) choisi un de tes heros!\n"
-                    + "\n1. \(player2!.warriorsPlayer[0].name!)" + "     2. \(player2!.warriorsPlayer[1].name!)" + "     3. \(player2!.warriorsPlayer[2].name!)")
-                print(" life:\(player2!.warriorsPlayer[0].life)" + "     life:\(player2!.warriorsPlayer[1].life)" + "     life: \(player2!.warriorsPlayer[2].life)")
+                player2?.setRonud(number: 1)
+                print("\(player2!.getName()) choisi un de tes heros!\n"
+                    + "\n1. \(player2HeroTab![0].getName())" + "     2. \(player2HeroTab![1].getName())" + "     3. \(player2HeroTab![2].getName())")
+                print(" life:\(player2HeroTab![0].getLife())" + "     life:\(player2HeroTab![1].getLife())" + "     life: \(player2HeroTab![2].getLife())")
                 if let hero1 = readLine(){
                     let heroP2 = Int(hero1)! - 1
-                    let heroAttaqueP2 = player2!.warriorsPlayer[heroP2]
+                    let heroAttaqueP2 = player2HeroTab![heroP2]
                         heroAttaqueP2.heroTechnics()
                     print("Qui veux tu attaquer ?"
-                        + "\n1. \(player1!.warriorsPlayer[0].name!)" + "     2. \(player1!.warriorsPlayer[1].name!)" + "     3. \(player1!.warriorsPlayer[2].name!)")
-                    print("  life:\(player1!.warriorsPlayer[0].life)" + "      life:\(player1!.warriorsPlayer[1].life)" + "     life: \(player1!.warriorsPlayer[2].life)")
+                        + "\n1. \(player1HeroTab![0].getName())" + "     2. \(player1HeroTab![1].getName())" + "     3. \(player1HeroTab![2].getName())")
+                    print("  life:\(player1HeroTab![0].getLife())" + "      life:\(player1HeroTab![1].getLife())" + "     life: \(player1HeroTab![2].getLife())")
                     if let hero2 = readLine() {
                         let hero2P1 = Int(hero2)! - 1
-                        let heroDefense2 = player1!.warriorsPlayer[hero2P1]
-                        heroAttaqueP2.whatTechnic(player2: player1!, heroPlayer2: heroDefense2, typeOfTechnic:heroAttaqueP2.typeOfAttack )
+                        let heroDefense2 = player1HeroTab![hero2P1]
+                        heroAttaqueP2.whatTechnic(player2: player1!, heroPlayer2: heroDefense2, typeOfTechnic:heroAttaqueP2.getTypeOfAttack() )
                     }
                 }
                 displayHeroLife(hero1: player1!,hero2: player2! )
@@ -333,27 +336,27 @@ class Game{
     func whoseWin()-> Bool{
         let stat = Stat(player1: player1!, player2: player2!)
         var lifePlayer1: Int = 0
-        for warrior in player1!.warriorsPlayer{
-            lifePlayer1 += warrior.life
+        for warrior in player1!.getWarriorsPlayers(){
+            lifePlayer1 += warrior.getLife()
         }
         print(lifePlayer1)
         var lifePlayer2: Int = 0
-        for warrior in player2!.warriorsPlayer{
-            lifePlayer2 += warrior.life
+        for warrior in player2!.getWarriorsPlayers(){
+            lifePlayer2 += warrior.getLife()
         }
         print(lifePlayer2)
         if lifePlayer1 <= 0 {
             print("\n\n=============================")
-            print("     VICTOIRE de \(player2!.name) ")
+            print("     VICTOIRE de \(player2!.getName()) ")
             print("=============================")
-            player2?.winner = true
+            player2?.setWinner(winner: true)
             stat.statEndGame(player1: player1!, player2: player2!)
             return false
         } else if lifePlayer2 <= 0 {
             print("\n\n=============================")
-            print("     VICTOIRE de \(player1!.name) ")
+            print("     VICTOIRE de \(player1!.getName()) ")
             print("=============================")
-            player1?.winner = true
+            player1?.setWinner(winner: true)
             stat.statEndGame(player1: player1!, player2: player2!)
             return false
         }
@@ -361,17 +364,19 @@ class Game{
     }
     
     func displayHeroLife(hero1: Player,hero2: Player ){
-        let count = hero1.warriorsPlayer.count
-        print("\n    \(hero1.name)                 \(hero2.name)")
+        let count = hero1.getWarriorsPlayers().count
+        let heroPlayer1 = hero1.getWarriorsPlayers()
+        let heroPlayer2 = hero2.getWarriorsPlayers()
+        print("\n    \(hero1.getName())                 \(hero2.getName())")
         print("-------------------------------------------")
         for hero in 0...count - 1 {
-            if player1!.warriorsPlayer[hero].life > 0 && player2!.warriorsPlayer[hero].life > 0{
-                print("\((player1!.warriorsPlayer[hero].name)!) / \(player1!.warriorsPlayer[hero].life) de vie ||   \((player2!.warriorsPlayer[hero].name)!) / \(player2!.warriorsPlayer[hero].life) de vie")
-            } else if player1!.warriorsPlayer[hero].life <= 0 && player2!.warriorsPlayer[hero].life <= 0 {
-                print("\((player1!.warriorsPlayer[hero].name)!) EST MORT ||   \((player2!.warriorsPlayer[hero].name)!) / EST MORT")
-            } else if player1!.warriorsPlayer[hero].life > 0 && player2!.warriorsPlayer[hero].life <= 0 {
-                print("\((player1!.warriorsPlayer[hero].name)!) / \(player1!.warriorsPlayer[hero].life) de vie  ||   \((player2!.warriorsPlayer[hero].name)!) / EST MORT")
-            }else if player1!.warriorsPlayer[hero].life <= 0 && player2!.warriorsPlayer[hero].life > 0 { print("\((player1!.warriorsPlayer[hero].name)!) / EST MORT  ||   \((player2!.warriorsPlayer[hero].name)!) / \((player2!.warriorsPlayer[hero].life)) de vie")
+            if heroPlayer1[hero].getLife() > 0 && heroPlayer2[hero].getLife() > 0{
+                print("\((heroPlayer1[hero].getName())) / \(heroPlayer1[hero].getLife()) de vie ||   \((heroPlayer2[hero].getName())) / \(heroPlayer2[hero].getLife()) de vie")
+            } else if heroPlayer1[hero].getLife() <= 0 && heroPlayer2[hero].getLife() <= 0 {
+                print("\((heroPlayer1[hero].getName())) EST MORT ||   \((heroPlayer2[hero].getName())) / EST MORT")
+            } else if heroPlayer1[hero].getLife() > 0 && heroPlayer2[hero].getLife() <= 0 {
+                print("\((heroPlayer1[hero].getName())) / \(heroPlayer1[hero].getLife()) de vie  ||   \((heroPlayer2[hero].getName())) / EST MORT")
+            }else if heroPlayer1[hero].getLife() <= 0 && heroPlayer2[hero].getLife() > 0 { print("\((heroPlayer1[hero].getName())) / EST MORT  ||   \((heroPlayer2[hero].getName())) / \((heroPlayer2[hero].getLife())) de vie")
             }
         }
     }

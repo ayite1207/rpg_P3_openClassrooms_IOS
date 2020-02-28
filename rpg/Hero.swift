@@ -34,18 +34,18 @@ Class Hero : Mother Class wich allows to create the other Class of hero  (archer
         - normalAttack(player2: Player, heroPlayer2 : Hero) allows to make a basic attaque
 */
 class Hero{
-    var name: String?
-    var type: String?
-    var life: Int = 0
-    var care = 0
-    var typeCate: Cate?
-    var attack = 0
-    var fight: Int = 0
-    var defense: Int = 0
-    var typeOfAttack = 0
-    var normalAttack = 0
-    var superAttack = 0
-    var coffreMagique = 0
+    private var name: String?
+    private var type: String?
+    private var life: Int = 0
+    private var care = 0
+    private var typeCate: Cate?
+    private var attack = 0
+    private var fight: Int = 0
+    private var defense: Int = 0
+    private var typeOfAttack = 0
+    private var normalAttack = 0
+    private var superAttack = 0
+    private var coffreMagique = 0
     
     enum Cate{
         case archer,guerrier, espion,magicien, MONSTRE
@@ -107,6 +107,103 @@ class Hero{
     func heroTechnics(){
         print("je suis dans la fonction hero technic DE LA CLASSE HERO")
     }
+    /**
+     function get allows to acces  properties
+     */
+    func getName()->String{
+        return name!
+    }
+    
+    func getType()->String{
+        return type!
+    }
+    
+    func getLife()->Int{
+        return life
+    }
+    
+    func getCare()->Int{
+        return care
+    }
+    
+    func getTypeCate()->Cate{
+        return typeCate!
+    }
+    
+    func getAttack()->Int{
+        return attack
+    }
+    
+    func getFight()->Int{
+        return fight
+    }
+    
+    func getDefense()->Int{
+        return defense
+    }
+    
+    func getTypeOfAttack()->Int{
+        return typeOfAttack
+    }
+    
+    func getNormalAttack()->Int{
+        return normalAttack
+    }
+    
+    func getSuperAttack()->Int{
+        return superAttack
+    }
+    
+    func getCoffreMagique()->Int{
+        return coffreMagique
+    }
+    
+    /**
+     function set allows to change  properties
+     */
+    func setName(name: String){
+        self.name = name
+     }
+     
+    func setType(type: String){
+        self.type = type
+     }
+     
+    func setLife(life: Int){
+        if life == 0{
+            self.life = 0
+        }else {
+            self.life -= life
+        }
+     }
+     
+    func setCare(care: Int){
+        self.care = care
+     }
+     
+    func setFight(fight: Int){
+        self.fight += fight
+     }
+     
+    func setDefense(defense: Int){
+        self.defense += defense
+     }
+     
+    func setTypeOfAttack(typeOfAttack: Int){
+        self.typeOfAttack =  typeOfAttack
+     }
+     
+    func setNormalAttack(normalAttack: Int){
+        self.normalAttack += normalAttack
+     }
+     
+    func setSuperAttack(superAttack: Int){
+        self.superAttack += superAttack
+     }
+     
+//     func getCoffreMagique()->Int{
+//         return coffreMagique
+//     }
     /**
      Call the function corresponding to the chosen attack
         

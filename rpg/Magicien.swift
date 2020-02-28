@@ -12,7 +12,7 @@ class Magicien: Hero{
     
     init(name: String){
         super.init(cate: .magicien)
-        self.name = name
+        setName(name: name)
     }
     
     func presentation(){
@@ -35,7 +35,7 @@ class Magicien: Hero{
     override func heroTechnics(){
         let leCoffre = coffre()
         let coffre1 = coffre()
-        fight += 1
+        setFight(fight: 1)
         var bonChoix = true
         if coffre1 >= leCoffre {
             while bonChoix == true {
@@ -44,12 +44,12 @@ class Magicien: Hero{
                 if let choix = readLine(){
                     switch choix {
                     case "1":
-                        normalAttack += 1
-                        typeOfAttack = 1
+                        setNormalAttack(normalAttack: 1)
+                        setTypeOfAttack(typeOfAttack: 1)
                         bonChoix = false
                     case "2":
-                        superAttack += 1
-                        typeOfAttack = 2
+                        setSuperAttack(superAttack: 1)
+                        setTypeOfAttack(typeOfAttack: 2)
                         bonChoix = false
                     default:
                         print("Je ne cromprend pas ton choix !")
@@ -58,8 +58,8 @@ class Magicien: Hero{
                 }
             }
         } else {
-            normalAttack += 1
-            typeOfAttack = 1
+            setNormalAttack(normalAttack: 1)
+            setTypeOfAttack(typeOfAttack: 1)
         }
     }
     
@@ -101,21 +101,21 @@ class Magicien: Hero{
         var bonChoix = true
         print("JE SUIS DANS LA FONCTION ATTACK normal DE LA CLASSE Magicien!!!!!!!")
         while bonChoix == true {
-            if heroPlayer2.life > 0 {
-                heroPlayer2.life -= attack
-                heroPlayer2.defense += 1
-                if heroPlayer2.life > 0 {
-                    print("\nABRACADABRA ! \(heroPlayer2.name!) perd \(attack) point de vie !"
-                        + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
+            if heroPlayer2.getLife() > 0 {
+                heroPlayer2.setLife(life: getAttack())
+                heroPlayer2.setDefense(defense: 1)
+                if heroPlayer2.getLife() > 0 {
+                    print("\nABRACADABRA ! \(heroPlayer2.getName()) perd \(getAttack()) point de vie !"
+                        + "\(heroPlayer2.getName()) n'a plus que \(heroPlayer2.getLife()) de vie !")
                     bonChoix = false
                 } else {
-                    heroPlayer2.life = 0
-                    print("\nnABRACADABRA !" + "\(heroPlayer2.name!) est mort!")
+                    heroPlayer2.setLife(life: 0)
+                    print("\nnABRACADABRA !" + "\(heroPlayer2.getName()) est mort!")
                     bonChoix = false
                 }
             }else {
-                heroPlayer2.life = 0
-                print("\n\(heroPlayer2.name!) est déja mort dommage !")
+                heroPlayer2.setLife(life: 0)
+                print("\n\(heroPlayer2.getName()) est déja mort dommage !")
                 bonChoix = false
             }
         }
@@ -133,23 +133,23 @@ class Magicien: Hero{
      */
     
     func superAttack(player2: Player, heroPlayer2 : Hero){
-        print("JE SUIS DANS LA FONCTION SUPER ATTACK DE LA CLASSE MageICIEN   !!!!!!!")
-        print("Super ATTAQUE tour de Magie !!!!!" + "\nJAFAR attaque tous les enemis vivants !!!!")
+        print("Super ATTAQUE tour de Magie !!!!!" + "\nMerlin attaque tous les enemis vivants !!!!")
+        let player2HeroTab = player2.getWarriorsPlayers()
         for i in 0...2{
-            if player2.warriorsPlayer[i].life > 0 {
+            if player2HeroTab[i].getLife() > 0 {
                    let superAttack = 20
-                   player2.warriorsPlayer[i].life -= superAttack
-                   player2.warriorsPlayer[i].defense += 1
-                if player2.warriorsPlayer[i].life > 0 {
-                    print("MAGIE ! \(player2.warriorsPlayer[i].name!) perd \(superAttack) point de vie !"
-                        + "\(player2.warriorsPlayer[i].name!) n'a plus que \(player2.warriorsPlayer[i].life) de vie !")
+                   player2HeroTab[i].setLife(life: superAttack)
+                   player2HeroTab[i].setDefense(defense: 1)
+                if player2HeroTab[i].getLife() > 0 {
+                    print("MAGIE ! \(player2HeroTab[i].getName()) perd \(superAttack) point de vie !"
+                        + "\(player2HeroTab[i].getName()) n'a plus que \(player2HeroTab[i].getLife()) de vie !")
                 }else {
-                       player2.warriorsPlayer[i].life = 0
-                       print("\n\(name!) attaque !" + "\(heroPlayer2.name!) est mort!")
+                       player2HeroTab[i].setLife(life: 0)
+                       print("\n\(getName()) attaque !" + "\(heroPlayer2.getName()) est mort!")
                    }
                }else {
-                   player2.warriorsPlayer[i].life = 0
-                   print("\n\(heroPlayer2.name!) est déja mort dommage !")
+                   player2HeroTab[i].setLife(life: 0)
+                   print("\n\(heroPlayer2.getName()) est déja mort dommage !")
                }
         }
     }

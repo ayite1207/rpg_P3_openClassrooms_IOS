@@ -12,7 +12,7 @@ class Espion: Hero{
     
     init(name: String){
         super.init(cate: .espion)
-        self.name = name
+        setName(name: name)
     }
     
     func presentation(){
@@ -30,7 +30,7 @@ class Espion: Hero{
     override func heroTechnics(){
         let leCoffre = coffre()
         let coffre1 = coffre()
-        fight += 1
+        setFight(fight: 1)
         var bonChoix = true
         if coffre1 >= leCoffre {
             while bonChoix == true {
@@ -39,12 +39,12 @@ class Espion: Hero{
                 if let choix = readLine(){
                     switch choix {
                     case "1":
-                        normalAttack += 1
-                        typeOfAttack = 1
+                        setNormalAttack(normalAttack: 1)
+                        setTypeOfAttack(typeOfAttack: 1)
                         bonChoix = false
                     case "2":
-                        superAttack += 1
-                        typeOfAttack = 2
+                        setSuperAttack(superAttack: 1)
+                        setTypeOfAttack(typeOfAttack: 2)
                         bonChoix = false
                     default:
                         print("Je ne cromprend pas ton choix !")
@@ -53,8 +53,8 @@ class Espion: Hero{
                 }
             }
         } else {
-            normalAttack += 1
-            typeOfAttack = 1
+            setNormalAttack(normalAttack: 1)
+            setTypeOfAttack(typeOfAttack: 1)
         }
     }
     
@@ -96,21 +96,21 @@ class Espion: Hero{
         var bonChoix = true
         print("JE SUIS DANS LA FONCTION ATTACK normal DE LA CLASSE ESPION!!!!!!!")
         while bonChoix == true {
-            if heroPlayer2.life > 0 {
-                heroPlayer2.life -= attack
-                heroPlayer2.defense += 1
-                if heroPlayer2.life > 0 {
-                    print("\n\(name!) attaque ! \(heroPlayer2.name!) perd \(attack) point de vie !"
-                        + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
+            if heroPlayer2.getLife() > 0 {
+                heroPlayer2.setLife(life: getAttack())
+                heroPlayer2.setDefense(defense: 1)
+                if heroPlayer2.getLife() > 0 {
+                    print("\n\(heroPlayer2.getName()) perd \(getAttack()) point de vie !"
+                        + "\(heroPlayer2.getName()) n'a plus que \(heroPlayer2.getLife()) de vie !")
                     bonChoix = false
                 } else {
-                    heroPlayer2.life = 0
-                    print("\n\(self.name!) attaque !" + "\(heroPlayer2.name!) est mort!")
+                    heroPlayer2.setLife(life: 0)
+                    print("\(heroPlayer2.getName()) est mort!")
                     bonChoix = false
                 }
             }else {
-                heroPlayer2.life = 0
-                print("\n\(heroPlayer2.name!) est déja mort dommage !")
+                heroPlayer2.setLife(life: 0)
+                print("\n\(heroPlayer2.getName()) est déja mort dommage !")
                 bonChoix = false
             }
         }
@@ -128,21 +128,21 @@ class Espion: Hero{
      */
     
     func superAttack(heroPlayer2 : Hero){
-        print("JE SUIS DANS LA FONCTION SUPER ATTACK DE LA CLASSE EsPION   !!!!!!!")
-        if heroPlayer2.life > 0 {
-            let superAttack = attack * 2
-            heroPlayer2.life -= superAttack
-            heroPlayer2.defense += 1
-            if heroPlayer2.life > 0{
-                print("POISON VICIEUX ! \(heroPlayer2.name!) perd \(superAttack) point de vie !"
-                    + "\(heroPlayer2.name!) n'a plus que \(heroPlayer2.life) de vie !")
+        if heroPlayer2.getLife() > 0 {
+            let superAttack = getAttack() + 10
+            heroPlayer2.setLife(life: superAttack)
+            heroPlayer2.setDefense(defense: 1)
+            if heroPlayer2.getLife() > 0{
+                print("TADA ! \(heroPlayer2.getName()) perd \(superAttack) point de vie !"
+                    + "ATTAQUE POISON VICIEUX !\(heroPlayer2.getName()) n'a plus que \(heroPlayer2.getLife()) de vie !")
             }else {
-                heroPlayer2.life = 0
-                print("\nLE POISON À FAIT EFFET PLUS VITE QUE PRÉVUE !" + "\(heroPlayer2.name!) est mort!")
+                heroPlayer2.setLife(life: 0)
+                print("\nBOOM ! \(getName()) attaque !" + "\(heroPlayer2.getName()) est mort!")
             }
         }else {
-            heroPlayer2.life = 0
-            print("\n\(heroPlayer2.name!) est déja mort dommage !")
+            heroPlayer2.setLife(life: 0)
+            print("\n LE POISON À FAIT EFFET PLUS VITE QUE PRÉVUE !\(heroPlayer2.getName()) est déja mort dommage !")
         }
     }
 }
+
