@@ -104,7 +104,7 @@ class Hero{
        - heroTechnic() allows to choose  what technique can be used
      */
     
-    func heroTechnics(){
+    func heroTechnics(player: Player){
         print("je suis dans la fonction hero technic DE LA CLASSE HERO")
     }
     /**
@@ -200,10 +200,6 @@ class Hero{
     func setSuperAttack(superAttack: Int){
         self.superAttack += superAttack
      }
-     
-//     func getCoffreMagique()->Int{
-//         return coffreMagique
-//     }
     /**
      Call the function corresponding to the chosen attack
         
@@ -212,7 +208,7 @@ class Hero{
      ```
      - Parameters:
         - player2 : the player who will be attacked
-        - heroPlayer :the hero who will attack
+        - heroPlayer2 :the hero who will attack
         - typeOfTechnic : the type of attack used
     */
     

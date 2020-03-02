@@ -13,9 +13,11 @@ class Player{
     private var round = 0
     private var warriorsPlayer : [Hero] = []
     private var winner : Bool = false
+    private var ordi: Bool = false
     
-    init(name: String, numberOfPlayers: Int,warriors1: Hero, warriors2: Hero, warriors3: Hero) {
+    init(name: String, numberOfPlayers: Int,warriors1: Hero, warriors2: Hero, warriors3: Hero, ordi: Bool) {
         self.name = name
+        self.ordi = ordi
         warriorsPlayer.append(warriors1)
         warriorsPlayer.append(warriors2)
         warriorsPlayer.append(warriors3)
@@ -34,6 +36,9 @@ class Player{
     }
     func getWinner()-> Bool{
         return winner
+    }
+    func getOrdi()-> Bool{
+        return ordi
     }
     func setRonud(number: Int){
         round += number

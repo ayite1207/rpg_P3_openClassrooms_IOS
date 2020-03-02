@@ -27,7 +27,7 @@ class Espion: Hero{
        - heroTechnic() allows to choose  what technique can be used
      */
     
-    override func heroTechnics(){
+    override func heroTechnics(player: Player){
         let leCoffre = coffre()
         let coffre1 = coffre()
         setFight(fight: 1)
@@ -36,20 +36,27 @@ class Espion: Hero{
             while bonChoix == true {
                 print("Un COFFRE apparait, Choisi une nouvelle arme !"
                     + "\n 1. COUTEAU 2. POISON")
-                if let choix = readLine(){
-                    switch choix {
-                    case "1":
-                        setNormalAttack(normalAttack: 1)
-                        setTypeOfAttack(typeOfAttack: 1)
-                        bonChoix = false
-                    case "2":
-                        setSuperAttack(superAttack: 1)
-                        setTypeOfAttack(typeOfAttack: 2)
-                        bonChoix = false
-                    default:
-                        print("Je ne cromprend pas ton choix !")
-                        bonChoix = true
-                    }
+                if player.getOrdi() == true{
+                    setSuperAttack(superAttack: 1)
+                    setTypeOfAttack(typeOfAttack: 2)
+                    print("\(player.getName()) choisi le POISON !!")
+                    bonChoix = false
+                } else {
+                    if let choix = readLine(){
+                         switch choix {
+                         case "1":
+                             setNormalAttack(normalAttack: 1)
+                             setTypeOfAttack(typeOfAttack: 1)
+                             bonChoix = false
+                         case "2":
+                             setSuperAttack(superAttack: 1)
+                             setTypeOfAttack(typeOfAttack: 2)
+                             bonChoix = false
+                         default:
+                             print("Je ne cromprend pas ton choix !")
+                             bonChoix = true
+                         }
+                     }
                 }
             }
         } else {
@@ -133,8 +140,8 @@ class Espion: Hero{
             heroPlayer2.setLife(life: superAttack)
             heroPlayer2.setDefense(defense: 1)
             if heroPlayer2.getLife() > 0{
-                print("TADA ! \(heroPlayer2.getName()) perd \(superAttack) point de vie !"
-                    + "ATTAQUE POISON VICIEUX !\(heroPlayer2.getName()) n'a plus que \(heroPlayer2.getLife()) de vie !")
+                print("ATTAQUE POISON VICIEUX ! \(heroPlayer2.getName()) perd \(superAttack) point de vie !"
+                    + "\(heroPlayer2.getName()) n'a plus que \(heroPlayer2.getLife()) de vie !")
             }else {
                 heroPlayer2.setLife(life: 0)
                 print("\nBOOM ! \(getName()) attaque !" + "\(heroPlayer2.getName()) est mort!")

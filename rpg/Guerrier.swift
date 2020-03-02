@@ -27,7 +27,7 @@ class Guerrier: Hero{
        - heroTechnic() allows to choose  what technique can be used
      */
     
-    override func heroTechnics(){
+    override func heroTechnics(player: Player){
         let leCoffre = coffre()
         let coffre1 = coffre()
         setFight(fight: 1)
@@ -36,20 +36,27 @@ class Guerrier: Hero{
             while bonChoix == true {
                 print("Un COFFRE apparait, Choisi une nouvelle arme !"
                     + "\n 1. ÉPÉE NORMAL 2. ÉPÉE SURPUISSANTE")
-                if let choix = readLine(){
-                    switch choix {
-                    case "1":
-                        setNormalAttack(normalAttack: 1)
-                        setTypeOfAttack(typeOfAttack: 1)
-                        bonChoix = false
-                    case "2":
-                        setSuperAttack(superAttack: 1)
-                        setTypeOfAttack(typeOfAttack: 2)
-                        bonChoix = false
-                    default:
-                        print("Je ne cromprend pas ton choix !")
-                        bonChoix = true
-                    }
+                if player.getOrdi() == true{
+                    setSuperAttack(superAttack: 1)
+                    setTypeOfAttack(typeOfAttack: 2)
+                    print("\(player.getName()) choisi l'ÉPÉE SURPUISSANTE !!")
+                    bonChoix = false
+                } else {
+                    if let choix = readLine(){
+                         switch choix {
+                         case "1":
+                             setNormalAttack(normalAttack: 1)
+                             setTypeOfAttack(typeOfAttack: 1)
+                             bonChoix = false
+                         case "2":
+                             setSuperAttack(superAttack: 1)
+                             setTypeOfAttack(typeOfAttack: 2)
+                             bonChoix = false
+                         default:
+                             print("Je ne cromprend pas ton choix !")
+                             bonChoix = true
+                         }
+                     }
                 }
             }
         } else {

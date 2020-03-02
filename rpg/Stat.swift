@@ -16,7 +16,9 @@ class Stat {
         self.player1 = player1
         self.player2 = player2
     }
-    
+    /**
+    statEndGame() allows to diplay the winner of the game
+    */
     func statEndGame(player1: Player, player2: Player){
         print("Resumé de la partie")
         if player1.getWinner() == true {

@@ -12,7 +12,6 @@ class Game{
     var player1 : Player?
     var player2 : Player?
     var heroName: [String] = []
-    var endGame = false
     
     func startGame(){
         var answer = true
@@ -66,7 +65,7 @@ class Game{
             let hero = chooseYourHero(choice: tabTypeHero.randomElement()!, ordi: true)
             tabHero.append(hero)
         }
-        let  ordi = Player(name: "Rachid 2.0", numberOfPlayers: 1,warriors1: tabHero[0], warriors2: tabHero[1], warriors3: tabHero[2])
+        let  ordi = Player(name: "Rachid 2.0", numberOfPlayers: 1,warriors1: tabHero[0], warriors2: tabHero[1], warriors3: tabHero[2],ordi: true)
         return ordi
     }
     
@@ -111,7 +110,6 @@ class Game{
         }
         var answer = false
         if heroName.count == 0 {
-            print("le non n'existe pas !!!")
             answer = true
             heroName.append(name)
         }else {
@@ -120,7 +118,6 @@ class Game{
                     answer = false
                     break
                 }else {
-                    print("le non n'existe pas !!!")
                     answer = true
                 }
             }
@@ -234,7 +231,7 @@ class Game{
                 let heroPlayer1 = createHeros(compteur: i,sentenceTable: sentenceTable)
                 heroTab1.append(heroPlayer1)
             }
-            player1 = Player(name: namePlayer1, numberOfPlayers: 1,warriors1: heroTab1[0], warriors2: heroTab1[1], warriors3: heroTab1[2])
+            player1 = Player(name: namePlayer1, numberOfPlayers: 1,warriors1: heroTab1[0], warriors2: heroTab1[1], warriors3: heroTab1[2], ordi: false)
             print("\nFélicitation tu possedes tes trois héros.")
         case "2" :
             for i in 0...2 {
@@ -244,8 +241,8 @@ class Game{
                 let heroPlayer2 = createHeros(compteur: i,sentenceTable: sentencePlayer2Table)
                 heroTab2.append(heroPlayer2)
             }
-            player1 = Player(name: namePlayer1, numberOfPlayers: 1,warriors1: heroTab1[0], warriors2: heroTab1[1], warriors3: heroTab1[2])
-            player2 = Player(name: namePlayer2!, numberOfPlayers: 2,warriors1: heroTab2[0], warriors2: heroTab2[1], warriors3: heroTab2[2])
+            player1 = Player(name: namePlayer1, numberOfPlayers: 1,warriors1: heroTab1[0], warriors2: heroTab1[1], warriors3: heroTab1[2], ordi: false)
+            player2 = Player(name: namePlayer2!, numberOfPlayers: 2,warriors1: heroTab2[0], warriors2: heroTab2[1], warriors3: heroTab2[2], ordi: false)
         default:
             print("tu begailles ma parole !")
         }
@@ -298,7 +295,7 @@ class Game{
                 if let hero1 = readLine(){
                     let hero = Int(hero1)! - 1
                     let heroAttaque = player1HeroTab![hero]
-                        heroAttaque.heroTechnics()
+                        heroAttaque.heroTechnics(player: player1!)
                     print("Qui veux tu attaquer ?"
                         + "\n1. \(player2HeroTab![0].getName())" + "     | 2. \(player2HeroTab![1].getName())" + "     | 3. \(player2HeroTab![2].getName())")
                     print("life:\(player2HeroTab![0].getLife())" + "     | life:\(player2HeroTab![1].getLife())" + "     | life: \(player2HeroTab![2].getLife())")
@@ -310,25 +307,34 @@ class Game{
                     }
                 }
             } else {
-                player2?.setRonud(number: 1)
-                print("\(player2!.getName()) choisi un de tes heros!\n"
-                    + "\n1. \(player2HeroTab![0].getName())" + "     2. \(player2HeroTab![1].getName())" + "     3. \(player2HeroTab![2].getName())")
-                print(" life:\(player2HeroTab![0].getLife())" + "     life:\(player2HeroTab![1].getLife())" + "     life: \(player2HeroTab![2].getLife())")
-                if let hero1 = readLine(){
-                    let heroP2 = Int(hero1)! - 1
-                    let heroAttaqueP2 = player2HeroTab![heroP2]
-                        heroAttaqueP2.heroTechnics()
-                    print("Qui veux tu attaquer ?"
-                        + "\n1. \(player1HeroTab![0].getName())" + "     2. \(player1HeroTab![1].getName())" + "     3. \(player1HeroTab![2].getName())")
-                    print("  life:\(player1HeroTab![0].getLife())" + "      life:\(player1HeroTab![1].getLife())" + "     life: \(player1HeroTab![2].getLife())")
-                    if let hero2 = readLine() {
-                        let hero2P1 = Int(hero2)! - 1
-                        let heroDefense2 = player1HeroTab![hero2P1]
-                        heroAttaqueP2.whatTechnic(player2: player1!, heroPlayer2: heroDefense2, typeOfTechnic:heroAttaqueP2.getTypeOfAttack() )
+                if player2?.getName() == "Rachid 2.0"{
+                    player2?.setRonud(number: 1)
+                    let ordiHeroAttaque = ordiChooseYourHero(ordi: player2!)
+                    ordiHeroAttaque.heroTechnics(player: player2!)
+                    let heroDefense2 = ordiChooseThePlayersHero(player: player1!)
+                    ordiHeroAttaque.whatTechnic(player2: player1!, heroPlayer2: heroDefense2, typeOfTechnic: ordiHeroAttaque.getTypeOfAttack())
+                }else {
+                    player2?.setRonud(number: 1)
+                    print("\(player2!.getName()) choisi un de tes heros!\n"
+                        + "\n1. \(player2HeroTab![0].getName())" + "     2. \(player2HeroTab![1].getName())" + "     3. \(player2HeroTab![2].getName())")
+                    print(" life:\(player2HeroTab![0].getLife())" + "     life:\(player2HeroTab![1].getLife())" + "     life: \(player2HeroTab![2].getLife())")
+                    if let hero1 = readLine(){
+                        let heroP2 = Int(hero1)! - 1
+                        let heroAttaqueP2 = player2HeroTab![heroP2]
+                            heroAttaqueP2.heroTechnics(player: player2!)
+                        print("Qui veux tu attaquer ?"
+                            + "\n1. \(player1HeroTab![0].getName())" + "     2. \(player1HeroTab![1].getName())" + "     3. \(player1HeroTab![2].getName())")
+                        print("  life:\(player1HeroTab![0].getLife())" + "      life:\(player1HeroTab![1].getLife())" + "     life: \(player1HeroTab![2].getLife())")
+                        if let hero2 = readLine() {
+                            let hero2P1 = Int(hero2)! - 1
+                            let heroDefense2 = player1HeroTab![hero2P1]
+                            heroAttaqueP2.whatTechnic(player2: player1!, heroPlayer2: heroDefense2, typeOfTechnic:heroAttaqueP2.getTypeOfAttack() )
+                        }
                     }
+                        displayHeroLife(hero1: player1!,hero2: player2! )
                 }
-                displayHeroLife(hero1: player1!,hero2: player2! )
             }
+
             continu = whoseWin()
         }
     }
@@ -361,6 +367,31 @@ class Game{
             return false
         }
         return true
+    }
+    
+    func ordiChooseYourHero(ordi: Player)-> Hero{
+        let attack = 0
+        let ordisHerosTab = ordi.getWarriorsPlayers()
+        var heroChosen: Hero?
+        for i in 0...2 {
+            if ordisHerosTab[i].getAttack() > attack && ordisHerosTab[i].getLife() > 0{
+                heroChosen = ordisHerosTab[i]
+            }
+        }
+        print("\n\(ordi.getName()) choisi \(heroChosen!.getName()) pour attaquer !!\n")
+        return heroChosen!
+    }
+    
+    func ordiChooseThePlayersHero(player: Player)-> Hero{
+        let attack = 0
+        let playerHerosTab = player.getWarriorsPlayers()
+        var heroChosen: Hero?
+        for i in 0...2 {
+            if playerHerosTab[i].getAttack() > attack && playerHerosTab[i].getLife() > 0{
+                heroChosen = playerHerosTab[i]
+            }
+        }
+        return heroChosen!
     }
     
     func displayHeroLife(hero1: Player,hero2: Player ){
