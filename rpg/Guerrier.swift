@@ -73,7 +73,7 @@ class Guerrier: Hero{
      ```
      - Parameters:
         - player2 : the player who will be attacked
-        - heroPlayer :the hero who will attack
+        - heroPlayer2 :the hero who will attack
         - typeOfTechnic : the type of attack used
     */
     

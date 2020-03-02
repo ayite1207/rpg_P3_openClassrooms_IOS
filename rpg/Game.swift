@@ -7,12 +7,17 @@
 //
 
 import Foundation
-
+/**
+the class Game organize all the game
+ 
+*/
 class Game{
     var player1 : Player?
     var player2 : Player?
     var heroName: [String] = []
-    
+    /**
+    startGame() allows you to choose the game mode. solo or two
+    */
     func startGame(){
         var answer = true
         print("\n----------------------------------------")
@@ -56,9 +61,10 @@ class Game{
             }
         }
     }
-    
+    /**
+    creationOrdi() create the virtual palyer return a player object
+    */
     func creationOrdi()-> Player{
-        print("FUNCTION creationOrdi !!!!!!")
         let tabTypeHero = ["1","2","3","4","5"]
         var tabHero: [Hero] = []
         for _ in 0...2 {
@@ -68,6 +74,14 @@ class Game{
         let  ordi = Player(name: "Rachid 2.0", numberOfPlayers: 1,warriors1: tabHero[0], warriors2: tabHero[1], warriors3: tabHero[2],ordi: true)
         return ordi
     }
+    
+    /**
+    createHeros() create the hero.  return a Hero object
+     
+    - Parameters:
+        - compteur : allows to choose the sentence who will be display
+        - sentenceTable : a table of sentences who will be display
+    */
     
     func createHeros(compteur: Int,sentenceTable: [String])-> Hero{
         var hero: Hero?
@@ -104,6 +118,14 @@ class Game{
         }
         return hero!
     }
+    
+    /**
+    ifNameExiste() check if the name chosen by the player exist or not
+     
+    - Parameters:
+        - name : we check if the name in parameter is already used
+    */
+    
     func ifNameExiste(name: String)-> Bool{
         for i in heroName{
             print(i)
@@ -127,6 +149,14 @@ class Game{
         }
         return answer
     }
+    
+    /**
+    chooseYourHero() allows to create a hero object fromthe choise of the player
+     
+    - Parameters:
+        - choice : allows to know what hero the player choose
+        - ordi : allows to know if the player is virtual or not
+    */
     
     func chooseYourHero(choice: String, ordi: Bool)-> Hero{
         var hero: Hero?
@@ -217,6 +247,15 @@ class Game{
         return hero!
     }
     
+    /**
+    creatPlayers() allows to choose the three heros when create your team
+     
+    - Parameters:
+        - soloOuPas : for know if there is one or two players
+        - namePlayer1 : the name of the player one
+        - namePlayer2 : the name of the player two
+    */
+    
     func creatPlayers(soloOuPas: String, namePlayer1: String,namePlayer2: String?){
         print("FONCTION creatPlayers !!!!!!!!!")
         var heroTab1 : [Hero] = []
@@ -248,6 +287,13 @@ class Game{
         }
     }
     
+    /**
+    presentationPlayerHero() display the heros of each player
+     
+    - Parameters:
+        - player : allows to display the heros
+    */
+    
     func presentationPlayerHero(player: Player?){
         let heroTab = player?.getWarriorsPlayers()
         if let player1 = player {
@@ -257,19 +303,19 @@ class Game{
                 + "\n\(heroTab![2].getName())     | life: \(heroTab![2].getLife())   | attack: \(heroTab![2].getAttack())   | care: \(heroTab![2].getAttack())  \n")
         }
     }
+    /**
+    begining() display the heros of each player
+    */
     func begining(){
         print("\n\nCommencons par présenter nos deux guerriers!")
-        if player2?.getName() == "RAchid"{
-            print("\nAujourd'hui c'est \(player1!.getName()) et l'ORDI \(player2!.getName()) qui s'affrontent.\n")
-            presentationPlayerHero(player: player1!)
-            presentationPlayerHero(player: player2!)
-        }else {
             print("\nAujourd'hui c'est \(player1!.getName()) et \(player2!.getName()) qui s'affrontent.\n")
             presentationPlayerHero(player: player1!)
             presentationPlayerHero(player: player2!)
-        }
+        
     }
-    
+    /**
+     the startBattle() organize all battle
+     */
     
     func startBattle(){
         begining()
@@ -338,7 +384,9 @@ class Game{
             continu = whoseWin()
         }
     }
-    
+    /**
+     whoseWin() check if one of the player win
+     */
     func whoseWin()-> Bool{
         let stat = Stat(player1: player1!, player2: player2!)
         var lifePlayer1: Int = 0
@@ -369,6 +417,13 @@ class Game{
         return true
     }
     
+    /**
+     ordiChooseYourHero() choose a hero of the virtual player
+     
+     - Parameters:
+        - ordi : the virtual player
+     */
+    
     func ordiChooseYourHero(ordi: Player)-> Hero{
         let attack = 0
         let ordisHerosTab = ordi.getWarriorsPlayers()
@@ -382,6 +437,13 @@ class Game{
         return heroChosen!
     }
     
+    /**
+     displayHeroLife() allows to choose a hero who will be attacked
+     
+     - Parameters:
+        - player : the player who will be attacked
+     */
+    
     func ordiChooseThePlayersHero(player: Player)-> Hero{
         let attack = 0
         let playerHerosTab = player.getWarriorsPlayers()
@@ -393,6 +455,14 @@ class Game{
         }
         return heroChosen!
     }
+    
+    /**
+     displayHeroLife() allows to display  the life of each heros in each rounds
+     
+     - Parameters:
+        - hero1 : the hero of the player one
+        - hero2 : the hero of the player two
+     */
     
     func displayHeroLife(hero1: Player,hero2: Player ){
         let count = hero1.getWarriorsPlayers().count

@@ -18,6 +18,10 @@ class Stat {
     }
     /**
     statEndGame() allows to diplay the winner of the game
+     
+     - Parameters:
+        - player1 :allows to recover the the parameter winner
+        - player2 :allows to recover the the parameter winner
     */
     func statEndGame(player1: Player, player2: Player){
         print("Resumé de la partie")
@@ -31,6 +35,13 @@ class Stat {
             statHero(player: player2)
         }
     }
+    
+    /**
+    statHero() allows to diplay statistics of the winner
+     
+     - Parameters:
+        - player :allows to recover  the parameter of the winner
+    */
     
     func statHero(player: Player){
         for hero in player.getWarriorsPlayers(){
