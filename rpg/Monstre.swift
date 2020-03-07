@@ -24,7 +24,7 @@ class Monstre: Hero{
      */
     
     func coffre()-> Int{
-        let numero: [Int] = [1,2,3]
+        let numero: [Int] = [1,2,3,4,5]
         return numero.randomElement()!
     }
     
@@ -34,10 +34,9 @@ class Monstre: Hero{
     
     override func heroTechnics(player: Player){
         let leCoffre = coffre()
-        let coffre1 = coffre()
         setFight(fight: 1)
         var bonChoix = true
-        if coffre1 >= leCoffre {
+        if 1 == leCoffre {
             while bonChoix == true {
                 print("Un COFFRE apparait, Choisi une nouvelle arme !"
                     + "\n 1. MASSE 2. TRONC DE L'ENFER!")

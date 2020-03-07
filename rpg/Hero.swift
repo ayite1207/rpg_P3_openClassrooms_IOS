@@ -45,6 +45,7 @@ class Hero{
     private var typeOfAttack = 0
     private var normalAttack = 0
     private var superAttack = 0
+    private var numbOfCare = 0
     private var coffreMagique = 0
     
     enum Cate{
@@ -82,6 +83,7 @@ class Hero{
             name = "Ninja"
             life = 100
             attack = 20
+            care = 15
             typeCate = .espion
             type = "L'Espion"
         case .magicien:
@@ -107,6 +109,20 @@ class Hero{
     func heroTechnics(player: Player){
         print("je suis dans la fonction hero technic DE LA CLASSE HERO")
     }
+    
+    func carLife(life: Int){
+       if life == 0{
+           self.life = 0
+       }else {
+           self.life += life
+       }
+    }
+    
+    func care(hero : Hero){
+        hero.carLife(life: 15)
+        print("\(hero.getName()) a 15 points de vie en plus !!")
+    }
+    
     /**
      function get allows to acces  properties
      */
@@ -158,6 +174,10 @@ class Hero{
         return coffreMagique
     }
     
+    func getNumbOfCare()->Int{
+        return numbOfCare
+    }
+    
     /**
      function set allows to change  properties
      */
@@ -200,6 +220,10 @@ class Hero{
     func setSuperAttack(superAttack: Int){
         self.superAttack += superAttack
      }
+    
+    func setNumbOfCare(numbOfCare: Int){
+        self.numbOfCare += numbOfCare
+    }
     /**
      Call the function corresponding to the chosen attack
         

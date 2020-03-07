@@ -15,6 +15,11 @@ class Game{
     var player1 : Player?
     var player2 : Player?
     var heroName: [String] = []
+    
+    func unwrap(playerToUnwrap: Player?)-> Player{
+        guard let player = playerToUnwrap else{return playerToUnwrap!}
+        return player
+    }
     /**
     startGame() allows you to choose the game mode. solo or two
     */
@@ -38,7 +43,6 @@ class Game{
                 if let soloOuPas = readLine(){
                     switch soloOuPas {
                     case "1":
-                        print("SOLO!!")
                         player2 = creationOrdi()
                         creatPlayers(soloOuPas: "1", namePlayer1: namePlayer1,namePlayer2: nil)
                         startBattle()
@@ -68,7 +72,7 @@ class Game{
         let tabTypeHero = ["1","2","3","4","5"]
         var tabHero: [Hero] = []
         for _ in 0...2 {
-            let hero = chooseYourHero(choice: tabTypeHero.randomElement()!, ordi: true)
+            let hero = createAHero(choice: tabTypeHero.randomElement()!, ordi: true)
             tabHero.append(hero)
         }
         let  ordi = Player(name: "Rachid 2.0", numberOfPlayers: 1,warriors1: tabHero[0], warriors2: tabHero[1], warriors3: tabHero[2],ordi: true)
@@ -96,19 +100,19 @@ class Game{
             if let firsChoice = readLine() {
                 switch firsChoice {
                 case "1":
-                    hero = chooseYourHero(choice: "1", ordi: false)
+                    hero = createAHero(choice: "1", ordi: false)
                     answere = false
                 case "2":
-                    hero = chooseYourHero(choice: "2", ordi: false)
+                    hero = createAHero(choice: "2", ordi: false)
                     answere = false
                 case "3":
-                    hero = chooseYourHero(choice: "3", ordi: false)
+                    hero = createAHero(choice: "3", ordi: false)
                     answere = false
                 case "4":
-                    hero = chooseYourHero(choice: "4", ordi: false)
+                    hero = createAHero(choice: "4", ordi: false)
                     answere = false
                 case "5":
-                    hero = chooseYourHero(choice: "5", ordi: false)
+                    hero = createAHero(choice: "5", ordi: false)
                     answere = false
                 default:
                     print("Je n'ai pas compris la réponse")
@@ -127,9 +131,6 @@ class Game{
     */
     
     func ifNameExiste(name: String)-> Bool{
-        for i in heroName{
-            print(i)
-        }
         var answer = false
         if heroName.count == 0 {
             answer = true
@@ -141,26 +142,24 @@ class Game{
                     break
                 }else {
                     answer = true
+                    heroName.append(name)
                 }
             }
-        }
-        if answer == true && heroName.count != 0 {
-            heroName.append(name)
         }
         return answer
     }
     
     /**
-    chooseYourHero() allows to create a hero object fromthe choise of the player
+    createAHero() allows to create a hero object from the choise of the player
      
     - Parameters:
         - choice : allows to know what hero the player choose
         - ordi : allows to know if the player is virtual or not
     */
     
-    func chooseYourHero(choice: String, ordi: Bool)-> Hero{
+    func createAHero(choice: String, ordi: Bool)-> Hero{
         var hero: Hero?
-        var nom = true
+        var name = ""
         if ordi == true {
             switch choice {
             case "1":
@@ -177,76 +176,54 @@ class Game{
                 print("Je n'ai pas compris la réponse")
             }
         } else {
-            while nom == true {
                 switch choice {
                 case "1":
-                    print("Comment s'appelle ton archer ?")
-                    if let name = readLine(){
-                        let testName = ifNameExiste(name: name)
-                        if testName == true {
-                            hero = Archer(name: name)
-                            nom = false
-                        } else {
-                            print("Ce prenon existe déjà choisis en un autre !")
-                            nom = true
-                        }
-                    }
+                    name = checkTheName(index: "1")
+                    hero = Archer(name: name)
                 case "2":
-                    print("Comment s'appelle ton guerrier ?")
-                    if let name = readLine(){
-                        let testName = ifNameExiste(name: name)
-                        if testName == true {
-                            hero = Guerrier(name: name)
-                            nom = false
-                        } else {
-                            print("Ce prenon existe déjà choisis en un autre !")
-                            nom = true
-                        }
-                    }
+                    name = checkTheName(index: "2")
+                    hero = Guerrier(name: name)
                 case "3":
-                    print("Comment s'appelle ton espion ?")
-                    if let name = readLine(){
-                        let testName = ifNameExiste(name: name)
-                        if testName == true {
-                            hero = Espion(name: name)
-                            nom = false
-                        } else {
-                            print("Ce prenon existe déjà choisis en un autre !")
-                            nom = true
-                        }
-                    }
+                    name = checkTheName(index: "3")
+                    hero = Espion(name: name)
                 case "4":
-                    print("Comment s'appelle ton mage ?")
-                    if let name = readLine(){
-                        let testName = ifNameExiste(name: name)
-                        if testName == true {
-                            hero = Magicien(name: name)
-                            nom = false
-                        } else {
-                            print("Ce prenon existe déjà choisis en un autre !")
-                            nom = true
-                        }
-                    }
+                    name = checkTheName(index: "4")
+                    hero = Magicien(name: name)
                 case "5":
-                    print("Comment s'appelle ton Monstre ?")
-                    if let name = readLine(){
-                        let testName = ifNameExiste(name: name)
-                        if testName == true {
-                            hero = Monstre(name: name)
-                            nom = false
-                        } else {
-                            print("Ce prenon existe déjà choisis en un autre !")
-                            nom = true
-                        }
-                    }
+                    name = checkTheName(index: "5")
+                    hero = Monstre(name: name)
                 default:
                     print("Je n'ai pas compris la réponse")
                 }
-            }
         }
         return hero!
     }
+    /**
+    checkTheName() check if the name of the player's hero exist or not
+     
+    - Parameters:
+        - index : for display the sentence of the array esntenceTab
+    */
     
+    func checkTheName(index: String)-> String{
+        var answer = ""
+        let esntenceTab: [String] = ["Comment s'appelle ton archer ?","Comment s'appelle ton guerrier ?","Comment s'appelle ton espion ?","Comment s'appelle ton mage ?","Comment s'appelle ton Monstre ?"]
+        var nom = true
+        while nom == true {
+            print(esntenceTab[Int(index)! - 1])
+            if let name = readLine(){
+                let testName = ifNameExiste(name: name)
+                if testName == true {
+                    answer = name
+                    nom = false
+                } else {
+                    print("Ce prenon existe déjà choisis en un autre !")
+                    nom = true
+                }
+            }
+        }
+        return answer
+    }
     /**
     creatPlayers() allows to choose the three heros when create your team
      
@@ -257,7 +234,6 @@ class Game{
     */
     
     func creatPlayers(soloOuPas: String, namePlayer1: String,namePlayer2: String?){
-        print("FONCTION creatPlayers !!!!!!!!!")
         var heroTab1 : [Hero] = []
         var heroTab2 : [Hero] = []
         let sentenceTable = ["Fais ton premier choix","HA HA !tres bon choix \(namePlayer1)" + "\nFais ton second choix", "Fais ton dernier choix !!!"]
@@ -296,12 +272,9 @@ class Game{
     
     func presentationPlayerHero(player: Player?){
         let heroTab = player?.getWarriorsPlayers()
-        if let player1 = player {
-            print("\(player1.getName()) possède trois héros :\n"
-                + "\n\(heroTab![0].getName())     | life: \(heroTab![0].getLife())   | attack: \(heroTab![0].getAttack())   | care: \(heroTab![0].getCare())  "
-                + "\n\(heroTab![1].getName())     | life: \(heroTab![1].getLife())   | attack: \(heroTab![1].getAttack())   | care: \(heroTab![1].getCare())  "
-                + "\n\(heroTab![2].getName())     | life: \(heroTab![2].getLife())   | attack: \(heroTab![2].getAttack())   | care: \(heroTab![2].getAttack())  \n")
-        }
+        print( "\n1. \(heroTab![0].getName()) : \(heroTab![0].getType())     | life: \(heroTab![0].getLife())   | attack: \(heroTab![0].getAttack())   | care: \(heroTab![0].getCare())  "
+                + "\n2. \(heroTab![1].getName()) : \(heroTab![1].getType())     | life: \(heroTab![1].getLife())   | attack: \(heroTab![1].getAttack())   | care: \(heroTab![1].getCare())  "
+                + "\n3. \(heroTab![2].getName()) : \(heroTab![2].getType())     | life: \(heroTab![2].getLife())   | attack: \(heroTab![2].getAttack())   | care: \(heroTab![2].getCare())  \n")
     }
     /**
     begining() display the heros of each player
@@ -309,7 +282,10 @@ class Game{
     func begining(){
         print("\n\nCommencons par présenter nos deux guerriers!")
             print("\nAujourd'hui c'est \(player1!.getName()) et \(player2!.getName()) qui s'affrontent.\n")
+            guard let playerOneName = player1?.getName(), let playertTwoName = player2?.getName() else {return}
+            print("\(playerOneName)")
             presentationPlayerHero(player: player1!)
+            print("\(playertTwoName)")
             presentationPlayerHero(player: player2!)
         
     }
@@ -319,69 +295,103 @@ class Game{
     
     func startBattle(){
         begining()
+        let p1 = unwrap(playerToUnwrap: player1)
+        let p2 = unwrap(playerToUnwrap: player2)
         print("C'est le moment que tout le monde attend, LA BAGARRE!")
         print("=============================")
         print("\nQUE LA BATAILLE COMMENCE\n")
         print("=============================")
         var continu = true
-        let player1HeroTab = player1?.getWarriorsPlayers()
-        let player2HeroTab = player2?.getWarriorsPlayers()
-        player1?.setRonud(number: 1)
-        player2?.setRonud(number: 1)
+        p1.setRonud(number: 1)
+        p2.setRonud(number: 1)
         
         while continu {
-            if player1?.getRound() == player2?.getRound(){
-                print("\nround \((player1?.getRound())!)")
+            if p1.getRound() == p2.getRound(){
+                print("\nround \((p1.getRound()))")
                 print("---------------------------\n")
-                player1?.setRonud(number: 1)
-                print((player1?.getName())! + " choisi un de tes heros!"
-                    + "\n1. \(player1HeroTab![0].getName())" + "     | 2. \(player1HeroTab![1].getName())" + "     | 3. \(player1HeroTab![2].getName())")
-                print("life:\(player1HeroTab![0].getLife())" + "     | life:\(player1HeroTab![1].getLife())" + "     | life: \(player1HeroTab![2].getLife())")
-                print("attack:\(player1HeroTab![0].getAttack())" + "    | attack:\(player1HeroTab![1].getAttack())" + "   | attack: \(player1HeroTab![2].getAttack())")
-                if let hero1 = readLine(){
-                    let hero = Int(hero1)! - 1
-                    let heroAttaque = player1HeroTab![hero]
-                        heroAttaque.heroTechnics(player: player1!)
-                    print("Qui veux tu attaquer ?"
-                        + "\n1. \(player2HeroTab![0].getName())" + "     | 2. \(player2HeroTab![1].getName())" + "     | 3. \(player2HeroTab![2].getName())")
-                    print("life:\(player2HeroTab![0].getLife())" + "     | life:\(player2HeroTab![1].getLife())" + "     | life: \(player2HeroTab![2].getLife())")
-                    print("attack:\(player2HeroTab![0].getAttack())" + "    | attack:\(player2HeroTab![1].getAttack())" + "     | attack: \(player2HeroTab![2].getAttack())")
-                    if let hero2 = readLine() {
-                        let hero3 = Int(hero2)! - 1
-                        let heroDefence = player2HeroTab![hero3]
-                        heroAttaque.whatTechnic(player2: player2!, heroPlayer2: heroDefence, typeOfTechnic: heroAttaque.getTypeOfAttack())
-                    }
-                }
+                attack(player1Attack: p1, player2Defence: p2)
             } else {
-                if player2?.getName() == "Rachid 2.0"{
-                    player2?.setRonud(number: 1)
-                    let ordiHeroAttaque = ordiChooseYourHero(ordi: player2!)
-                    ordiHeroAttaque.heroTechnics(player: player2!)
-                    let heroDefense2 = ordiChooseThePlayersHero(player: player1!)
-                    ordiHeroAttaque.whatTechnic(player2: player1!, heroPlayer2: heroDefense2, typeOfTechnic: ordiHeroAttaque.getTypeOfAttack())
+                if p2.getName() == "Rachid 2.0"{
+                    p2.setRonud(number: 1)
+                    let ordiHeroAttaque = ordiChooseYourHero(ordi: p2)
+                    ordiHeroAttaque.heroTechnics(player: p2)
+                    let heroDefense2 = ordiChooseThePlayersHero(player: p1)
+                    ordiHeroAttaque.whatTechnic(player2: p1, heroPlayer2: heroDefense2, typeOfTechnic: ordiHeroAttaque.getTypeOfAttack())
+                    displayHeroLife(hero1: player1!,hero2: player2! )
                 }else {
-                    player2?.setRonud(number: 1)
-                    print("\(player2!.getName()) choisi un de tes heros!\n"
-                        + "\n1. \(player2HeroTab![0].getName())" + "     2. \(player2HeroTab![1].getName())" + "     3. \(player2HeroTab![2].getName())")
-                    print(" life:\(player2HeroTab![0].getLife())" + "     life:\(player2HeroTab![1].getLife())" + "     life: \(player2HeroTab![2].getLife())")
-                    if let hero1 = readLine(){
-                        let heroP2 = Int(hero1)! - 1
-                        let heroAttaqueP2 = player2HeroTab![heroP2]
-                            heroAttaqueP2.heroTechnics(player: player2!)
-                        print("Qui veux tu attaquer ?"
-                            + "\n1. \(player1HeroTab![0].getName())" + "     2. \(player1HeroTab![1].getName())" + "     3. \(player1HeroTab![2].getName())")
-                        print("  life:\(player1HeroTab![0].getLife())" + "      life:\(player1HeroTab![1].getLife())" + "     life: \(player1HeroTab![2].getLife())")
-                        if let hero2 = readLine() {
-                            let hero2P1 = Int(hero2)! - 1
-                            let heroDefense2 = player1HeroTab![hero2P1]
-                            heroAttaqueP2.whatTechnic(player2: player1!, heroPlayer2: heroDefense2, typeOfTechnic:heroAttaqueP2.getTypeOfAttack() )
-                        }
-                    }
-                        displayHeroLife(hero1: player1!,hero2: player2! )
+                    attack(player1Attack: p2, player2Defence: p1)
+                    displayHeroLife(hero1: player1!,hero2: player2! )
                 }
             }
-
             continu = whoseWin()
+        }
+    }
+    /**
+    attacko() allows to attack or Treat
+     
+    - Parameters:
+        - player1Attack : the player who attack or treat
+        - player2Defence : the player who is attack or treat
+    */
+    func attack(player1Attack: Player, player2Defence: Player){
+        let player1HeroTab = player1Attack.getWarriorsPlayers()
+        let player2HeroTab = player2Defence.getWarriorsPlayers()
+        var reponse = false
+        player1Attack.setRonud(number: 1)
+        print((player1Attack.getName()) + " choisi un de tes heros!")
+        presentationPlayerHero(player: player1Attack)
+        if let hero1 = readLine(){
+            let hero = Int(hero1)! - 1
+            var heroAttaque = player1HeroTab[hero]
+            while heroAttaque.getLife() == 0 {
+                print("Je ne sais pas si tu es au courant mais \(heroAttaque.getName()) est MORT!"
+                + "\n choisi un autre joueur!!")
+                 presentationPlayerHero(player: player1Attack)
+                if let hero1 = readLine(){
+                    let hero = Int(hero1)! - 1
+                    heroAttaque = player1HeroTab[hero]
+                }
+            }
+            if heroAttaque.getTypeCate() == .espion || heroAttaque.getTypeCate() == .magicien {
+                print("tu as choisi \(heroAttaque.getType()) veux tu"
+                + "\n1. soigner     2. attaquer")
+                while reponse == false{
+                    if let choice = readLine() {
+                        switch choice {
+                        case "1":
+                            print("Qui veux tu soigner ?")
+                            presentationPlayerHero(player: player1Attack)
+                            if let hero = readLine() {
+                                let numberHero = Int(hero)! - 1
+                                let hero = player1HeroTab[numberHero]
+                                heroAttaque.care(hero : hero)
+                            }
+                            reponse = true
+                        case "2":
+                            heroAttaque.heroTechnics(player: player1Attack)
+                            print("Qui veux tu attaquer ?")
+                            presentationPlayerHero(player: player2Defence)
+                            if let hero2 = readLine() {
+                                let numberHero = Int(hero2)! - 1
+                                let heroDefence = player2HeroTab[numberHero]
+                                heroAttaque.whatTechnic(player2: player2Defence, heroPlayer2: heroDefence, typeOfTechnic: heroAttaque.getTypeOfAttack())
+                            }
+                            reponse = true
+                        default:
+                            reponse = false
+                        }
+                    }
+                }
+            }else {
+                heroAttaque.heroTechnics(player: player1Attack)
+                print("Qui veux tu attaquer ?")
+                presentationPlayerHero(player: player2Defence)
+                if let hero2 = readLine() {
+                    let numberHero = Int(hero2)! - 1
+                    let heroDefence = player2HeroTab[numberHero]
+                    heroAttaque.whatTechnic(player2: player2Defence, heroPlayer2: heroDefence, typeOfTechnic: heroAttaque.getTypeOfAttack())
+                }
+            }
         }
     }
     /**
@@ -425,11 +435,12 @@ class Game{
      */
     
     func ordiChooseYourHero(ordi: Player)-> Hero{
-        let attack = 0
+        var attack = 0
         let ordisHerosTab = ordi.getWarriorsPlayers()
         var heroChosen: Hero?
         for i in 0...2 {
-            if ordisHerosTab[i].getAttack() > attack && ordisHerosTab[i].getLife() > 0{
+            if ordisHerosTab[i].getAttack() >= attack && ordisHerosTab[i].getLife() > 0{
+                attack = ordisHerosTab[i].getAttack()
                 heroChosen = ordisHerosTab[i]
             }
         }
@@ -438,18 +449,19 @@ class Game{
     }
     
     /**
-     displayHeroLife() allows to choose a hero who will be attacked
+     ordiChooseThePlayersHero() allows to choose a hero who will be attacked
      
      - Parameters:
         - player : the player who will be attacked
      */
     
     func ordiChooseThePlayersHero(player: Player)-> Hero{
-        let attack = 0
+        var attack = 0
         let playerHerosTab = player.getWarriorsPlayers()
         var heroChosen: Hero?
         for i in 0...2 {
-            if playerHerosTab[i].getAttack() > attack && playerHerosTab[i].getLife() > 0{
+            if playerHerosTab[i].getAttack() >= attack && playerHerosTab[i].getLife() > 0{
+                attack = playerHerosTab[i].getAttack()
                 heroChosen = playerHerosTab[i]
             }
         }

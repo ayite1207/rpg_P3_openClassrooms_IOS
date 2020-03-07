@@ -50,7 +50,8 @@ class Stat {
             + "\nattaques  : \(hero.getFight()) fois"
             + "\n   attaques normales   : \(hero.getNormalAttack()) fois"
             + "\n   super attaques      : \(hero.getSuperAttack()) fois"
-            + "\ndéfenses : \(hero.getDefense()) fois")
+            + "\ndéfenses : \(hero.getDefense()) fois"
+            + "\nsoins apportés : \(hero.getNumbOfCare()) fois")
         }
     }
 }

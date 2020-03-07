@@ -19,7 +19,7 @@ class Espion: Hero{
         print("Je suis un espion!!")
     }
     func coffre()-> Int{
-        let numero: [Int] = [1,2,3]
+        let numero: [Int] = [1,2,3,4,5]
         return numero.randomElement()!
     }
     
@@ -29,10 +29,9 @@ class Espion: Hero{
     
     override func heroTechnics(player: Player){
         let leCoffre = coffre()
-        let coffre1 = coffre()
         setFight(fight: 1)
         var bonChoix = true
-        if coffre1 >= leCoffre {
+        if 1 == leCoffre {
             while bonChoix == true {
                 print("Un COFFRE apparait, Choisi une nouvelle arme !"
                     + "\n 1. COUTEAU 2. POISON")
@@ -88,6 +87,14 @@ class Espion: Hero{
         }
     }
     
+    override func care(hero : Hero){
+        let care = super.getCare()
+        hero.carLife(life: care)
+        print("\(hero.getName()) a \(care) points de vie en plus !!")
+        setNumbOfCare(numbOfCare: 1)
+    }
+    
+    
     /**
      Allows to attack the hero selected in parameters
       
@@ -101,7 +108,6 @@ class Espion: Hero{
     
     override func normalAttack(heroPlayer2 : Hero){
         var bonChoix = true
-        print("JE SUIS DANS LA FONCTION ATTACK normal DE LA CLASSE ESPION!!!!!!!")
         while bonChoix == true {
             if heroPlayer2.getLife() > 0 {
                 heroPlayer2.setLife(life: getAttack())

@@ -25,6 +25,7 @@ class Player{
     /**
      The get function allows to get the parameters of this class who are private
      */
+    
     func getName()-> String {
         return name
     }
