@@ -11,5 +11,14 @@ Les contraintes pour réaliser ce projet étaient les suivantes :
 
 - Une fois la partie terminée (lorsque tous les personnages d’une équipe sont morts), j’affiche le joueur qui a gagné et les statistiques de jeu : le nombre de tours et la liste des personnages des deux équipes avec leurs propriétés (point de vie, etc.). 
 
-- Un coffre peut apparaître devant un personnage quand celui joue son tour. Ce coffre contiendra forcément une arme 
+- Un coffre peut apparaître devant un personnage quand celui joue son tour. Ce coffre contiendra forcément une arme. 
 
+  Compétences utilisées.
+  
+  Dans le cadre de ce projet j'ai pu :
+  - Utiliser l'heritage pour certaines de class
+  - Créer des optionnels
+  - Initialiser des class 
+  - Utilisation des propriétés et des methodes
+  
+  
