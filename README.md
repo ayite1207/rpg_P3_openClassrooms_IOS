@@ -19,6 +19,6 @@ Les contraintes pour réaliser ce projet étaient les suivantes :
   - Utiliser l'heritage pour certaines de class
   - Créer des optionnels
   - Initialiser des class 
-  - Utilisation des propriétés et des methodes
+  - Utiliser des propriétés et des methodes
   
   
